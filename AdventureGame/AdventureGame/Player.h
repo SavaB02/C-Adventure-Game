@@ -13,7 +13,12 @@ public:
 	Player(string i_name);
 
 	bool hasItem(string itemName);
-	void pickupItem(Item& item);
+
+	void addItem(Item item);
+
+	void removeItem(string itemName);
+
+	vector<Item>& getInventory();	//return inventory
 
 };
 

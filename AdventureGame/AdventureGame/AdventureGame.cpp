@@ -1,15 +1,15 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include "Item.h"		//include item class
 #include "Area.h"       //include area class
-#include "Player.h"
-#include <string>
+#include "Player.h"     //include player class
 #include <fstream>      //file input and output
 
 using namespace std;
    
 
-void optionsHeader()
+void optionsHeader()    //Function to call optionHeader
 {
     cout << "|===================================================================================================================================================|" << endl;
     cout << "|===================================================================================================================================================|" << endl;
@@ -20,26 +20,30 @@ void optionsHeader()
 
 int main()
 {
-    Area gate("The Gate", "Tall gates with weird symbols", "Assets/map_gates.txt", "Assets/inside_gates.txt");
-    Area village("The Village", "Old village", "Assets/map_village.txt", "Assets/inside_village.txt");
-    Area temple("The Tample", "Broken down temple", "Assets/map_temple.txt", "Assets/inside_temple.txt");
-    Area castle("The castle", "Tall and strong castle", "Assets/map_castle.txt", "Assets/inside_castle.txt");
+    //Setting up areas
+    Area gates("The Gate", "Head back to the Gates", "Assets/map_gates.txt", "Assets/inside_gates.txt");
+    Area village("The Village", "Go towards the village", "Assets/map_village.txt", "Assets/inside_village.txt");
+    Area temple("The Tample", "Walk towards the temple", "Assets/map_temple.txt", "Assets/inside_temple.txt");
+    Area castle("The castle", "Get near the castle", "Assets/map_castle.txt", "Assets/inside_castle.txt");
 
-    gate.addPathway(village);
-    village.addPathway(gate);
-    village.addPathway(temple);
-    temple.addPathway(village);
-    village.addPathway(castle);
-    castle.addPathway(village);
+    //Adding an explore button description
+    village.setExplore("Walk towards the village centre");
+    gates.setExplore("Circle around the gates");
+    temple.setExplore("Reach the temple");
+    castle.setExplore("Go inside the castle");
 
+    //Creating pathways between the areas
+    gates.addPathway(village);
+    village.addPathway(gates);
+    
+    gates.addPathway(temple);
+    temple.addPathway(gates);
 
-    gate.setFarDescription("Head back to the Gates");
-    village.setFarDescription("Go inside the village");
-    village.setExplore("Head towards the town centre");
-    gate.setExplore("Walk around the gates");
+    temple.addPathway(castle);
+    castle.addPathway(temple);
 
-
-    Area* currentArea = &gate;
+    //Creating a pointer
+    Area* currentArea = &gates;
     int userInput;
 
 
@@ -53,8 +57,10 @@ int main()
         currentArea->printMap();
         optionsHeader();
 
+        //First option of each area is to go inside that area
         cout << "[" << 1 << "]" << " " << currentArea->getExplore() << endl;
 
+        //for loop to create pathways options (2-4)
         for (int i = 0; i < currentArea->getPathways().size(); i++) {
             cout << "[" << i + 2 << "]" << " " << currentArea->getPathways()[i]->getFarDescription() << endl;
         }
@@ -62,9 +68,10 @@ int main()
         cin >> userInput;
         if (userInput > 0 && userInput <= currentArea->getPathways().size() + 1 && userInput != 1) {
             currentArea = currentArea->getPathways()[userInput - 2];
-            system("cls");
+            userInput = 0;
         }
         
+        //if player chooses to go inside the area
         else if (userInput == 1)
         {
             system("cls");
@@ -81,10 +88,26 @@ int main()
             cout << ">>> ";
             cin >> userInput;
 
+            if (userInput == 1)
+            {
+                currentArea->printMap();
+                userInput = 0;
+            }
+
+            else if (userInput == 2)
+            {
+
+            }
+
+            else
+            {
+                cout << "Bad input. Retry." << endl;
+                cin >> userInput;
+            }
+            
         }
 
         else {
-            system("cls");
             cout << "Bad input. Retry." << endl;
             cin >> userInput;
         }
