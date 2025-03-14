@@ -1,4 +1,6 @@
 #include "Area.h"
+#include <fstream>      //file input and output
+#include <iostream>
 
 // Character class
 
@@ -26,10 +28,12 @@ string Character::getDescription()
 //	Area class
 
 
-Area::Area(string i_name, string i_description)
+Area::Area(string i_name, string i_description, string i_mapPath, string i_mapInsidePath)
 {
 	name = i_name;
 	description = i_description;
+	mapPath = i_mapPath;
+	mapInsidePath = i_mapInsidePath;
 }
 
 void Area::setName(string new_name)
@@ -93,3 +97,33 @@ vector<Area*> Area::getPathways()
 	return pathways;
 }
 
+string Area::getMapPath()
+{
+	return mapPath;
+}
+
+void Area::printMap()
+{
+	ifstream file(mapPath);
+	if (!file) {
+		cout << "Error opening file: " << mapPath << endl;
+	}
+	string line;
+	while (getline(file, line))
+	{
+		cout << line << endl;
+	}
+}
+
+void Area::printInside()
+{
+	ifstream file(mapInsidePath);
+	if (!file) {
+		cout << "Error opening file: " << mapInsidePath << endl;
+	}
+	string line;
+	while (getline(file, line))
+	{
+		cout << line << endl;
+	}
+}

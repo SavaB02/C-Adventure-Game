@@ -34,10 +34,12 @@ private:
 	vector<Item*> items;		
 	vector<Character*> characters;
 	vector<Area*> pathways;
+	string mapPath;
+	string mapInsidePath;
 
 
 public:
-	Area(string i_name, string i_description);
+	Area(string i_name, string i_description, string i_mapPath, string i_mapInsidePath);
 
 	void setName(string name);
 	string getName();
@@ -57,6 +59,12 @@ public:
 	void addPathway(Area& new_pathway);
 
 	vector<Area*> getPathways();
+
+	string getMapPath();
+
+	void printMap();
+
+	void printInside();
 };
 
 
