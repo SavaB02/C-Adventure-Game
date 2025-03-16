@@ -110,7 +110,7 @@ void Area::printMap()
 	}
 }
 
-void Area::printInside()
+void Area::printInside()	//print inside check
 {
 	ifstream file(mapInsidePath);
 	if (!file) {
@@ -123,9 +123,19 @@ void Area::printInside()
 	}
 }
 
-void Area::addObstacle(string i_description, string i_obsImage, string i_requiredItem)
+void Area::addObstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem)
 {
-	obstacles.push_back(Obstacle(i_description, i_obsImage, i_requiredItem));
+	obstacles.push_back(Obstacle(i_name, i_description, i_obsImage, i_requiredItem));
+}
+
+Obstacle& Area::getObstacle(string i_name)
+{
+	for (auto& obstacle : obstacles) {
+		if (obstacle.getName() == i_name) {
+			return obstacle;	//return the found obstacle
+		}
+	}
+	throw runtime_error("Obstacle not found"); // Throw an error if not found
 }
 
 void Area::addItem(string i_name, string i_description)
@@ -154,53 +164,143 @@ bool Area::hasItems()	// Returns true if there are items, false if the vector is
 
 void Area::exploreArea(Player& player)
 {
-	for (auto& obstacle : obstacles) {
-		if (!obstacle.isSolved()) {
-			cout << "Options: " << endl;
-			cout << "1) Inspect Obstacle" << endl;
-			cout << "2) Use Item" << endl;
-			cout << "3) Leave" << endl;
+	for (auto& obstacle : obstacles) //iterates through each obstacle in the obstacles vector
+	{				
+		if (!obstacle.isSolved()) //if isSolved = false, then it list options
+		{					
+			int choice = 0;
 
-			int choice;
-			cin >> choice;
+			while (!obstacle.isSolved()) //Loops until the obstacle is solved or player leaves
+			{
+				cout << "Options: " << endl;
+				cout << "1) Inspect" << endl;
+				cout << "2) Use Item" << endl;
+				cout << "3) Leave" << endl;
 
-			if (choice == 1) {
-				obstacle.getDescription();  // Show obstacle description again
-			}
-			else if (choice == 2) {
-				// Let the player use an item from the inventory
-				useItem(player, obstacle);
-			}
-			else if (choice == 3) {
-				cout << "Leaving the area..." << endl;
-				return;  // Go back to a previous menu or area
+				//if loop to validate that the input is an integer and is within valid range (1-3)
+				if (!(cin >> choice) or choice < 1 or choice > 3)
+				{
+					cout << "Invalid input. Please choose a valid option (1-3):" << endl;
+					cin.clear(); // Clear error flag if non-integer input
+					cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard bad input
+				}
+				else
+				{
+					if (choice == 1) 
+					{
+						obstacle.printName();
+						obstacle.printDescription();  // Show obstacle description again
+						continue;
+					}
+					else if (choice == 2) 
+					{
+						// Let the player use an item from the inventory
+						useItem(player, obstacle);
+						continue;
+					}
+					else if (choice == 3) 
+					{
+						cout << "Leaving the area..." << endl;
+						return;  // Go back to a previous menu or area
+					}
+				}
 			}
 		}
 	}
 }
 
-void Area::useItem(Player& player, Obstacle& obstacle)
+bool Area::useItem(Player& player, Obstacle& obstacle)
 {
-	// Display player's inventory
+	// Display the player's inventory
 	cout << "Choose an item to use:" << endl;
 	for (int i = 0; i < player.getInventory().size(); ++i) {
 		cout << i + 1 << ") " << player.getInventory()[i].getName() << endl;
 	}
 
 	int itemChoice;
-	cin >> itemChoice;
+	bool validInput = false;
 
-	if (itemChoice >= 1 && itemChoice <= player.getInventory().size()) {
-		Item selectedItem = player.getInventory()[itemChoice - 1];	//creates a copy of players choice and stores it in this variable
-
-		// Check if this item solves the obstacle
-		if (selectedItem.getName() == obstacle.getRequiredItem()) {
-			cout << "You used the " << selectedItem.getName() << " and solved the obstacle!" << endl;
-			obstacle.solve();  // Mark the obstacle as solved
-			player.removeItem(selectedItem.getName());  // Remove item from player's inventory
+	while (!validInput) {
+		cout << "Enter your choice (1-" << player.getInventory().size() << "): ";
+		if (cin >> itemChoice) {
+			// Check if the choice is within the valid range
+			if (itemChoice >= 1 && itemChoice <= player.getInventory().size()) {
+				validInput = true; // Input is valid, exit loop
+			}
+			else {
+				cout << "Invalid choice! Please choose a number between 1 and " << player.getInventory().size() << "." << endl;
+			}
 		}
 		else {
-			cout << "This item does not work on the obstacle." << endl;
+			// If input is not an integer (e.g., user enters a letter or symbol)
+			cout << "Invalid input! Please enter a number between 1 and " << player.getInventory().size() << "." << endl;
+			cin.clear(); // Clear the error state
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore the rest of the invalid input
 		}
 	}
+
+	// Once we have a valid item choice, proceed with the item selection
+	Item selectedItem = player.getInventory()[itemChoice - 1]; // Store the selected item
+
+	// Check if this item solves the obstacle
+	if (selectedItem.getName() == obstacle.getRequiredItem()) 
+	{
+		cout << "You used the " << selectedItem.getName() << " and solved the obstacle!" << endl;
+		obstacle.solve();  // Mark the obstacle as solved
+		player.removeItem(selectedItem.getName());  // Remove item from inventory
+
+		// Check if the obstacle unlocks a new item
+		string unlockableItemName = obstacle.getUnlockItemName();
+		if (!unlockableItemName.empty()) 
+		{
+			string unlockableItemDescription = obstacle.getUnlockItemDescription();
+			// Add the unlocked item to the player's inventory
+			player.addItem(Item(unlockableItemName, unlockableItemDescription));
+			cout << "You unlocked a new item: " << unlockableItemName << "!" << endl;
+		}
+
+		// Check if the obstacle unlocks a new pathway
+		string unlockablePathway = obstacle.getUnlockPathway();
+		if (!unlockablePathway.empty()) 
+		{
+			// Unlock the new pathway
+			cout << "You unlocked a new path: " << unlockablePathway << "!" << endl;
+			// Here, you would typically mark the area or level as unlocked in your game logic
+			// For example, you might add the new path to the current area or update available pathways
+		}
+
+		// Add a pause before returning
+		cout << "\nPress Enter to continue...";
+		cin.ignore();
+		cin.get();  // Wait for user input before exiting
+
+		// Exit function after solving the obstacle
+		return true;
+
+	}
+	else {
+		cout << "This item does not work on the obstacle." << endl;
+		return false;
+	}
 }
+
+
+
+//void printFileContents(const string& filePath) {				//combine both funcitons into one, then have 2 separate from the same parent
+//	ifstream file(filePath);
+//	if (!file) {
+//		cout << "Error opening file: " << filePath << endl;
+//	}
+//	string line;
+//	while (getline(file, line)) {
+//		cout << line << endl;
+//	}
+//}
+//
+//void Area::printMap() {
+//	printFileContents(mapPath);
+//}
+//
+//void Area::printInside() {
+//	printFileContents(mapInsidePath);
+//}

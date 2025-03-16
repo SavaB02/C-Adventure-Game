@@ -3,23 +3,56 @@
 #include "Item.h"		//include item class
 #include <string>
 
+/**
+* @class Player
+* @brief Represents a player in the game.
+*
+* The Player class stores the player's name and inventory.
+* It provides functions to manage inventory items.
+*/
 class Player
 {
 private:
-	string name;
-	vector<Item> inventory;
+    /**
+    * @brief Name of the player.
+    */
+    string name;
+
+    /**
+    * @brief The player's inventory, stored as a vector of Item objects.
+    */
+    vector<Item> inventory;
 
 public:
-	Player(string i_name);
+    /**
+    * @brief Constructs a Player object.
+    * @param i_name The player's name.
+    */
+    Player(string i_name);
 
-	bool hasItem(string itemName);
+    /**
+    * @brief Checks if the player has a specific item in their inventory.
+    * @param itemName The name of the item to check.
+    * @return True if the item is in the inventory, false otherwise.
+    */
+    bool hasItem(string itemName);
 
-	void addItem(Item item);
+    /**
+    * @brief Adds an item to the player's inventory.
+    * @param item The item to add.
+    */
+    void addItem(Item item);
 
-	void removeItem(string itemName);
+    /**
+    * @brief Removes an item from the player's inventory.
+    * @param itemName The name of the item to remove.
+    */
+    void removeItem(string itemName);
 
-	vector<Item>& getInventory();	//return inventory
-
+    /**
+    * @brief Retrieves the player's inventory.
+    * @return A reference to the vector containing the player's items.
+    */
+    vector<Item>& getInventory();
 };
-
 

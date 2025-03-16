@@ -11,19 +11,19 @@ using namespace std;
 
 void optionsHeader()    //Function to call optionHeader
 {
-    cout << "|===================================================================================================================================================|" << endl;
-    cout << "|===================================================================================================================================================|" << endl;
+    cout << "|=====================================================================================================================================================|" << endl;
     cout << "|                                                                          Your options are:" << endl;
-    cout << "|===================================================================================================================================================|" << endl;
-    cout << "|===================================================================================================================================================|" << endl;
+    cout << "|=====================================================================================================================================================|" << endl;
 }
 
 int main()
 {
+
+    Player player("Player");
     //Setting up areas
     Area gates("The Gate", "Head back to the Gates", "Assets/map_gates.txt", "Assets/inside_gates.txt");
     Area village("The Village", "Go towards the village", "Assets/map_village.txt", "Assets/inside_village.txt");
-    Area temple("The Tample", "Walk towards the temple", "Assets/map_temple.txt", "Assets/inside_temple.txt");
+    Area temple("The Temple", "Walk towards the temple", "Assets/map_temple.txt", "Assets/inside_temple.txt");
     Area castle("The castle", "Get near the castle", "Assets/map_castle.txt", "Assets/inside_castle.txt");
 
     //Adding an explore button description
@@ -42,18 +42,31 @@ int main()
     temple.addPathway(castle);
     castle.addPathway(temple);
 
-    //Creating a pointer
+
+    //Creating a pointer for the current area
     Area* currentArea = &gates;
     int userInput;
+
+    village.addObstacle("Fence", "Appears to be broken", "fence.png", "Hammer");
+    village.getObstacle("Fence").setUnlockItem("Shovel", "A rusty shovel");
+    village.getObstacle("Fence").setUnlockPathway("Temple");
+
+
+    player.addItem(Item("Hammer", "A rusty hammer"));
+    village.exploreArea(player);
+    if (village.getObstacle("Fence").isSolved())
+    {
+        village.addPathway(temple);
+    }
+
+
 
 
     while (true) {
         system("cls");
-        cout << "|===================================================================================================================================================|" << endl;
-        cout << "|===================================================================================================================================================|" << endl;
+        cout << "|=====================================================================================================================================================|" << endl;
         cout << "|                                                                 You are at " << currentArea->getName() << endl;
-        cout << "|===================================================================================================================================================|" << endl;
-        cout << "|===================================================================================================================================================|" << endl;
+        cout << "|=====================================================================================================================================================|" << endl;
         currentArea->printMap();
         optionsHeader();
 
@@ -76,9 +89,7 @@ int main()
         {
             system("cls");
             cout << "|===================================================================================================================================================|" << endl;
-            cout << "|===================================================================================================================================================|" << endl;
             cout << "|                                                                 You are inside " << currentArea->getName() << endl;
-            cout << "|===================================================================================================================================================|" << endl;
             cout << "|===================================================================================================================================================|" << endl;
             currentArea->printInside();
             optionsHeader();
