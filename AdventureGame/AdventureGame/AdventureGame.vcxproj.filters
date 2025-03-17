@@ -30,6 +30,9 @@
     <ClCompile Include="Obstacle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Option.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Item.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Obstacle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Option.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,7 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(string i_name) 
+Player::Player(string i_name)
 {
 	name = i_name;
 }

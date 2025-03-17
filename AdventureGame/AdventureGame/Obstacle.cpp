@@ -11,7 +11,7 @@ Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, strin
 	requiredItem = i_requiredItem;
 	unlockItemDescription = "";
 	unlockItemName = "";
-	unlockNewPathway = "";
+	unlockNewPathway = false;
 	solved = false;
 }
 
@@ -76,12 +76,12 @@ string Obstacle::getUnlockItemDescription()
 	return unlockItemDescription;
 }
 
-void Obstacle::setUnlockPathway(string i_unlockNewPathway)
+void Obstacle::setUnlockPathway()
 {
-	unlockNewPathway = i_unlockNewPathway;
+	unlockNewPathway = true;
 }
 
-string Obstacle::getUnlockPathway()
+bool Obstacle::getUnlockPathway()
 {
 	return unlockNewPathway;
 }

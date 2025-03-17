@@ -48,9 +48,9 @@ private:
     string unlockItemDescription;
 
     /**
-    * @brief Name of a pathway that unlocks after solving this obstacle
+    * @brief Flag indicating if unlocked pathway is opened (true) or closed (false)
     */
-    string unlockNewPathway;
+    bool unlockNewPathway = false;
 
 public:
     /**
@@ -103,7 +103,7 @@ public:
     void solve();
 
     /**
-    * @brief Sets an item that's being unlocked
+    * @brief Unlocks an item after solving this obstacle
     * @param i_unlockItemName Name of the item that unlocks after solving this obstacle
     * @param i_unlockItemDescription Description of the item that unlocks after solving this obstacle
     */
@@ -122,14 +122,14 @@ public:
     string getUnlockItemDescription();
 
     /**
-    * @brief Set the name of a path that's being unlocked 
-    * @param i_unlockNewPathway Name of the pathway that unlocks after solving this obstacle
+    * @brief Unlocks a pathway after solving this obstacle
+    * @param i_unlockNewPathway Bool check of the pathway that unlocks after solving this obstacle
     */
-    void setUnlockPathway(string i_unlockNewPathway);
+    void setUnlockPathway();
 
     /**
-    * @brief Get a name of a pathway that's being unlocked
-    * @return Obstacle's unlockNewPathway
+    * @brief Getter for unlockable Pathway (if an obstacle unlocks a pathway)
+    * @return unlockNewPathway = true;
     */
-    string getUnlockPathway();
+    bool getUnlockPathway();
 };

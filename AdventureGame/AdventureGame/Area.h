@@ -4,6 +4,7 @@
 #include "Item.h"		//include item class
 #include "Obstacle.h"	//include obstacle class
 #include "Player.h"
+#include "Option.h"
 
 
 
@@ -87,6 +88,10 @@ private:
     */
     vector<Obstacle> obstacles;
 
+    /**
+    * @brief Vector of options present inside the area.
+    */
+    vector<Option> options;
 
 public:
 
@@ -193,7 +198,7 @@ public:
     void addObstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem);
 
     /**
-    * @brief Gets an obstacle's name from an 'obstacle' vector
+    * @brief Gets an obstacle's name from area's 'obstacle' vector
     * @param i_name Name of the obstacle.
     */
     Obstacle& getObstacle(string i_name);
@@ -234,6 +239,13 @@ public:
     * @return True if there are items in the area, false otherwise.
     */
     bool hasItems();
+
+
+    void addOption(string i_description, string i_optionType);
+
+    Option getOption(string i_description);
+
+    void displayOptions();
 };
 
 

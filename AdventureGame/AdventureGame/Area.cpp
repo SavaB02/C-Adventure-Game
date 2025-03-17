@@ -260,11 +260,11 @@ bool Area::useItem(Player& player, Obstacle& obstacle)
 		}
 
 		// Check if the obstacle unlocks a new pathway
-		string unlockablePathway = obstacle.getUnlockPathway();
-		if (!unlockablePathway.empty()) 
+		if (obstacle.getUnlockPathway())
 		{
 			// Unlock the new pathway
-			cout << "You unlocked a new path: " << unlockablePathway << "!" << endl;
+			cout << "You unlocked a new path!" << endl;
+			obstacle.setUnlockPathway();
 			// Here, you would typically mark the area or level as unlocked in your game logic
 			// For example, you might add the new path to the current area or update available pathways
 		}
@@ -281,6 +281,33 @@ bool Area::useItem(Player& player, Obstacle& obstacle)
 	else {
 		cout << "This item does not work on the obstacle." << endl;
 		return false;
+	}
+}
+
+void Area::addOption(string i_description, string i_optionType)
+{
+	options.push_back(Option(i_description, i_optionType));
+}
+
+Option Area::getOption(string i_description)
+{
+	for (auto& option : options) {
+		if (option.getDescription() == description) {
+			return option;
+		}
+	}
+	// If no option found return empty option
+	return Option("", "");
+}
+
+void Area::displayOptions()
+{
+	cout << "Options: " << endl;
+	cout << "1) Go back" << endl; 
+
+	// Display the rest of the options
+	for (int i = 0; i < options.size(); ++i) {
+		cout << i + 2 << ") " << options[i].getDescription() << endl;
 	}
 }
 
