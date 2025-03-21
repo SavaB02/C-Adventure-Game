@@ -6,27 +6,7 @@
 #include "Player.h"
 #include "Option.h"
 
-
-
 using namespace std;
-
-
-class Character
-{
-private:
-	string name;
-	string description;
-	vector <string> dialogues;
-
-
-public:
-	Character(string i_name, string i_description);
-
-	string getName();
-	string getDescription();
-//	string talk();
-
-};
 
 /**
 * @class Area
@@ -62,11 +42,6 @@ private:
     * @brief Vector of items present inside the area.
     */
     vector<Item> items;
-
-    /**
-    * @brief Vector of characters present in the area.
-    */
-    vector<Character*> characters;
 
     /**
     * @brief Vector of pathways connected to this area.
@@ -190,12 +165,9 @@ public:
 
     /**
     * @brief Adds a new obstacle to the area’s list of obstacles.
-    * @param i_name Name of the obstacle.
-    * @param i_description The description of the obstacle.
-    * @param i_obsImage The path to the .txt file representing the obstacle’s image.
-    * @param i_requiredItem The name of the item required to solve the obstacle.
+    * @param i_obstacle New obstacle
     */
-    void addObstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem);
+    void addObstacle(Obstacle i_obstacle);
 
     /**
     * @brief Gets an obstacle's name from area's 'obstacle' vector
@@ -223,10 +195,9 @@ public:
 
     /**
     * @brief Adds a new item to the area’s list of items.
-    * @param i_name The name of the item.
-    * @param i_description The description of the item.
+    * @param i_item New item
     */
-    void addItem(string i_name, string i_description);
+    void addItem(Item i_item);
 
     /**
     * @brief Removes an item from the area’s list of items.
@@ -240,11 +211,22 @@ public:
     */
     bool hasItems();
 
+    /**
+    * @brief Adds an option to select when exploring the area
+    * @param i_option New option
+    */
+    void addOption(Option i_option);
 
-    void addOption(string i_description, string i_optionType);
-
+    /**
+    * @brief Getter for an option
+    * @param i_description Description of that option
+    */
     Option getOption(string i_description);
 
+    /**
+    * @brief Displays all the options in the area in a list
+    * @return Vector of options
+    */
     void displayOptions();
 };
 

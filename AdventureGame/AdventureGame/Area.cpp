@@ -2,29 +2,6 @@
 #include <fstream>      //file input and output
 #include <iostream>
 
-// Character class
-
-Character::Character(string i_name, string i_description)
-{
-	name = i_name;
-	description = i_description;
-}
-
-string Character::getName()
-{
-	return name;
-}
-
-string Character::getDescription()
-{
-	return description;
-}
-
-//string Character::talk()
-//{
-	//	return dialogues;
-//}
-
 //	Area class
 
 
@@ -77,10 +54,6 @@ string Area::getFarDescription()
 	return farDescription;
 }
 
-//void Area::addCharacter(Character& new_character)
-//{
-//	characters.push_back(&new_character);
-//}
 
 void Area::addPathway(Area& new_pathway)
 {
@@ -123,9 +96,9 @@ void Area::printInside()	//print inside check
 	}
 }
 
-void Area::addObstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem)
+void Area::addObstacle(Obstacle i_obstacle)
 {
-	obstacles.push_back(Obstacle(i_name, i_description, i_obsImage, i_requiredItem));
+	obstacles.push_back(i_obstacle);
 }
 
 Obstacle& Area::getObstacle(string i_name)
@@ -138,9 +111,9 @@ Obstacle& Area::getObstacle(string i_name)
 	throw runtime_error("Obstacle not found"); // Throw an error if not found
 }
 
-void Area::addItem(string i_name, string i_description)
+void Area::addItem(Item i_item)
 {
-	items.push_back(Item(i_name, i_description));
+	items.push_back(i_item);
 }
 
 void Area::removeItem(string i_name)
@@ -284,15 +257,17 @@ bool Area::useItem(Player& player, Obstacle& obstacle)
 	}
 }
 
-void Area::addOption(string i_description, string i_optionType)
+void Area::addOption(Option i_option)
 {
-	options.push_back(Option(i_description, i_optionType));
+	options.push_back(i_option);
 }
 
 Option Area::getOption(string i_description)
 {
-	for (auto& option : options) {
-		if (option.getDescription() == description) {
+	for (auto& option : options) 
+	{
+		if (option.getDescription() == i_description) 
+		{
 			return option;
 		}
 	}
@@ -306,28 +281,8 @@ void Area::displayOptions()
 	cout << "1) Go back" << endl; 
 
 	// Display the rest of the options
-	for (int i = 0; i < options.size(); ++i) {
+	for (int i = 0; i < options.size(); ++i) 
+	{
 		cout << i + 2 << ") " << options[i].getDescription() << endl;
 	}
 }
-
-
-
-//void printFileContents(const string& filePath) {				//combine both funcitons into one, then have 2 separate from the same parent
-//	ifstream file(filePath);
-//	if (!file) {
-//		cout << "Error opening file: " << filePath << endl;
-//	}
-//	string line;
-//	while (getline(file, line)) {
-//		cout << line << endl;
-//	}
-//}
-//
-//void Area::printMap() {
-//	printFileContents(mapPath);
-//}
-//
-//void Area::printInside() {
-//	printFileContents(mapInsidePath);
-//}

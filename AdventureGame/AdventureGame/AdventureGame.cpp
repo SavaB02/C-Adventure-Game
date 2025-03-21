@@ -10,27 +10,24 @@ using namespace std;
    
 
 //Functions used
-void showMap();
+void showMap(Area* currentArea);
 int getUserInput(int min, int max);
-void exploreInside(Area& area);
-void openInventory(Player& player);
-void optionsHeader();    //Function to call option header
-
-//  INITIAL VARIABLES
-Area gates("The Gate", "Head back to the Gates", "Assets/map_gates.txt", "Assets/inside_gates.txt");    //starting area
-Area* currentArea = &gates; //Creating a pointer for the current area
-int userInput;
-
-Player player("Player");    //initialising the player
-
+void exploreInside(Area* currentArea, Player& player);
+void openInventory(Area* currentArea, Player& player);
+void optionsHeader();                                   //Function to call option header
 
 
 int main()
 {
     //Setting up areas
+    Area gates("The Gate", "Head back to the Gates", "Assets/map_gates.txt", "Assets/inside_gates.txt");
     Area village("The Village", "Go towards the village", "Assets/map_village.txt", "Assets/inside_village.txt");
     Area temple("The Temple", "Walk towards the temple", "Assets/map_temple.txt", "Assets/inside_temple.txt");
     Area castle("The castle", "Get near the castle", "Assets/map_castle.txt", "Assets/inside_castle.txt");
+
+    //Initialising the player and creating a pointer for the current area
+    Player player("Player");    
+    Area* currentArea = &gates;
 
     //Adding an explore button description
     village.setExplore("Walk towards the village centre");
@@ -52,11 +49,11 @@ int main()
     player.addItem(Item("Sword", "Long sword"));
 
 
-    village.addObstacle("Locked Door", "A door that appears to be locked", "door.txt", "Rusty key");
+    village.addObstacle(Obstacle("Locked Door", "A door that appears to be locked", "door.txt", "Rusty key"));
 
-    village.addOption("Look inside the house", "Locked Door");
-    village.addOption("Check the roof", "");
-    village.addOption("Walk inside the stables", "");
+    village.addOption(Option("Look inside the house", "Locked Door"));
+    village.addOption(Option("Check the roof", ""));
+    village.addOption(Option("Walk inside the stables", ""));
 
 
 
@@ -70,10 +67,13 @@ int main()
 
         if (userInput == 1)
         {
-            currentArea->getExplore();
+            
         }
         else if (userInput == 2)
         {
+            cout << village.getOption("Look inside the house").getDescription() << endl;
+            cout << village.getObstacle("Locked Door").getName() << endl;
+            system("pause");
             if (village.getOption("Look inside the house").getOptionType() == village.getObstacle("Locked Door").getName())
             {
                 village.exploreArea(player);
@@ -82,29 +82,32 @@ int main()
         else if (userInput == 3)
         {
             cout << "Nothing is found here..." << endl;
-            currentArea->getExplore();
+            system("pause");
+            continue;
         }
         else if (userInput == 4)
         {
             cout << "Nothing is found here..." << endl;
-            currentArea->getExplore();
+            system("pause");
+            continue;
         }
-
-
+        openInventory(currentArea, player);
+        system("pause");
+        
 
         system("cls");
-        showMap();
+        showMap(currentArea);
 
         userInput = getUserInput(1, currentArea->getPathways().size() + 2);
         
 
         if (userInput == 1)
         {
-            exploreInside(*currentArea);
+            exploreInside(currentArea, player);
         }
         else if (userInput == 2)
         {
-            openInventory(player);
+            openInventory(currentArea, player);
         }
         else if (userInput > 2)
         {
@@ -114,7 +117,7 @@ int main()
 }
 
 
-void showMap() 
+void showMap(Area* currentArea)
 {
     cout << "|=====================================================================================================================================================|" << endl;
     cout << "|                                                                 You are at " << currentArea->getName() << endl;
@@ -129,13 +132,13 @@ void showMap()
     cout << "[" << 2 << "]" << "Open Inventory" << endl;
 
     //for loop to create pathways options (3 - pathways vector size)
-    for (int i = 0; i < currentArea->getPathways().size(); i++) 
+    for (int i = 0; i < currentArea->getPathways().size(); i++)
     {
         cout << "[" << i + 3 << "]" << " " << currentArea->getPathways()[i]->getFarDescription() << endl;
     }
 }
 
-void exploreInside(Area& area)
+void exploreInside(Area* currentArea, Player& player)
 {
         system("cls");
         cout << "|===================================================================================================================================================|" << endl;
@@ -160,11 +163,11 @@ void exploreInside(Area& area)
         }
         else if (userInput == 3)
         {
-            openInventory(player);
+            openInventory(currentArea, player);
         }
 }
 
-void openInventory(Player& player)
+void openInventory(Area* currentArea,Player& player)
 {
     // if inventory is empty
     if (player.getInventory().empty()) 
@@ -187,7 +190,7 @@ void openInventory(Player& player)
     if (choice == player.getInventory().size() + 1) {
         // Go back to the previous area
         system("cls");  // Clear the screen
-        showMap();  // Display the current area map again
+        showMap(currentArea);  // Display the current area map again
     }
     else 
     {
@@ -205,8 +208,8 @@ void openInventory(Player& player)
         if (backChoice == 1)
         {
             system("cls");
-            showMap();  
-            openInventory(player);
+            showMap(currentArea);  
+            openInventory(currentArea, player);
         }
     }
 }
@@ -243,7 +246,7 @@ int getUserInput(int min, int max)
 
 void optionsHeader()    //Function to call optionHeader
 {
-    cout << "|=====================================================================================================================================================|" << endl;
-    cout << "|                                                                          Your options are:" << endl;
-    cout << "|=====================================================================================================================================================|" << endl;
+    cout << "|==========================================|" << endl;
+    cout << "|          Your options are:" << endl;
+    cout << "|==========================================|" << endl;
 }

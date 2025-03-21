@@ -1,4 +1,4 @@
 ﻿  AdventureGame.cpp
-C:\Users\savel\Desktop\C-Adventure-Game\AdventureGame\AdventureGame\AdventureGame.cpp(98,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\savel\Desktop\C-Adventure-Game\AdventureGame\AdventureGame\AdventureGame.cpp(185,63): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\savel\Desktop\C-Adventure-Game\AdventureGame\AdventureGame\AdventureGame.cpp(101,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\savel\Desktop\C-Adventure-Game\AdventureGame\AdventureGame\AdventureGame.cpp(188,63): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   AdventureGame.vcxproj -> C:\Users\savel\Desktop\C-Adventure-Game\AdventureGame\x64\Debug\AdventureGame.exe
