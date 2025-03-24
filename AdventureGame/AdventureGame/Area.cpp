@@ -146,9 +146,9 @@ void Area::exploreArea(Player& player)
 			while (!obstacle.isSolved()) //Loops until the obstacle is solved or player leaves
 			{
 				cout << "Options: " << endl;
-				cout << "1) Inspect" << endl;
-				cout << "2) Use Item" << endl;
-				cout << "3) Leave" << endl;
+				cout << "[1] Inspect" << endl;
+				cout << "[2] Use Item" << endl;
+				cout << "[3] Leave" << endl;
 
 				//if loop to validate that the input is an integer and is within valid range (1-3)
 				if (!(cin >> choice) or choice < 1 or choice > 3)
@@ -277,12 +277,16 @@ Option Area::getOption(string i_description)
 
 void Area::displayOptions()
 {
-	cout << "Options: " << endl;
-	cout << "1) Go back" << endl; 
+	cout << "[1] Go back" << endl; 
 
 	// Display the rest of the options
 	for (int i = 0; i < options.size(); ++i) 
 	{
-		cout << i + 2 << ") " << options[i].getDescription() << endl;
+		cout << "[" << i + 2 << "] " << options[i].getDescription() << endl;
 	}
+}
+
+int Area::getOptionSize()
+{
+	return options.size();
 }

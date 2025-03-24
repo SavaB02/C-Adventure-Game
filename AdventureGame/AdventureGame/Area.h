@@ -228,8 +228,9 @@ public:
     * @return Vector of options
     */
     void displayOptions();
-};
 
+    int getOptionSize();
+};
 
 
 

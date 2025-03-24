@@ -13,57 +13,152 @@ using namespace std;
 void showMap(Area* currentArea);
 int getUserInput(int min, int max);
 void exploreInside(Area* currentArea, Player& player);
-void openInventory(Area* currentArea, Player& player);
+void openInventory(Area* currentArea, Player& player, bool isInside);
 void optionsHeader();                                   //Function to call option header
 
 
 int main()
 {
     //Setting up areas
-    Area gates("The Gate", "Head back to the Gates", "Assets/map_gates.txt", "Assets/inside_gates.txt");
+    Area gates("The Gates", "Head back to the Gates", "Assets/map_gates.txt", "Assets/inside_gates.txt");
     Area village("The Village", "Go towards the village", "Assets/map_village.txt", "Assets/inside_village.txt");
-    Area temple("The Temple", "Walk towards the temple", "Assets/map_temple.txt", "Assets/inside_temple.txt");
-    Area castle("The castle", "Get near the castle", "Assets/map_castle.txt", "Assets/inside_castle.txt");
+    Area forest("The forest", "Get near the forest", "Assets/map_forest.txt", "Assets/inside_forest.txt");
 
     //Initialising the player and creating a pointer for the current area
-    Player player("Player");    
+    Player player("Player");  
     Area* currentArea = &gates;
+    bool isInside = true;
+    int exploreInput = 0;
 
     //Adding an explore button description
-    village.setExplore("Walk towards the village centre");
     gates.setExplore("Circle around the gates");
-    temple.setExplore("Reach the temple");
-    castle.setExplore("Go inside the castle");
+    village.setExplore("Walk towards the village centre");
+    forest.setExplore("Go inside the forest");
 
     //Creating pathways between the areas
     gates.addPathway(village);
     village.addPathway(gates);
+
+    gates.addPathway(forest);
+    forest.addPathway(gates);
     
-    gates.addPathway(temple);
-    temple.addPathway(gates);
+    //Initial player item
+    player.addItem(Item("Farewell Letter", "Go forth my child, find your ancestor's legacy!"));
 
-    temple.addPathway(castle);
-    castle.addPathway(temple);
+    //Gates options
+    gates.addOption(Option("Read the sign", ""));
+    gates.addOption(Option("Check the right collumn",""));
+    gates.addOption(Option("Check the left collumn", ""));
 
-    player.addItem(Item("Shovel", "A good looking shovel"));
-    player.addItem(Item("Sword", "Long sword"));
-
-
-    village.addObstacle(Obstacle("Locked Door", "A door that appears to be locked", "door.txt", "Rusty key"));
-
+    //Village options
     village.addOption(Option("Look inside the house", "Locked Door"));
     village.addOption(Option("Check the roof", ""));
     village.addOption(Option("Walk inside the stables", ""));
 
+    //Village obstacles
+    village.addObstacle(Obstacle("Door", "Door with a lock", "obstacle_door.txt", "Copper Key"));
+    village.addObstacle(Obstacle("Tree", "The path is blocked by a fallen tree. Without an axe, getting through seems imposible.", "obstacle_tree.txt", "Rusty Axe"));
 
+    //Forest options
+    forest.addOption(Option("Climb the tree", ""));
+    forest.addOption(Option("Meditate", ""));
+    forest.addOption(Option("Examine the vines", "Weathered Katana"));
 
+    //Forest obstacles
+    forest.addObstacle(Obstacle("Vines", "Twisting vines and overgrown brush bar the way. Cutting through is the only option", "obstacle_vines.txt", "Weathered Katana"));
+
+    //Main Game Logic
+    while (true)
+    {
+        cout << "Please, fullscreen the game for better experience" << endl;
+        cout << "Fading Echoes" << endl;
+        cout << "Game description" << endl;
+        cout << "Press Enter to continue..." << endl;
+        cin.ignore();
+
+        while (true)
+        {
+            showMap(currentArea);
+            int userInput = getUserInput(1, currentArea->getPathways().size() + 2);
+            if (userInput == 1)
+            {
+                exploreInside(currentArea, player);
+                if (currentArea->getName() == gates.getName())
+                {
+                    if (exploreInput == 1)
+                    {
+
+                    }
+                    else if (exploreInput == 2)
+                    {
+                        cout << userInput << endl;
+                        cin >> userInput;
+                        /*cout << "It reads: Broken land" << endl;
+                        system("pause");
+                        continue;*/
+                    }
+                    else if (exploreInput == 3)
+                    {
+                        cout << "nothing is found here..." << endl;
+                        system("pause");
+                        continue;
+                    }
+                    else if (exploreInput == 4)
+                    {
+                        cout << "You find an axe!" << endl;
+                        player.addItem(Item("Axe", "Rusty Axe"));
+                        system("pause");
+                        continue;
+                    }
+                }
+                else if (currentArea->getName() == village.getName())
+                {
+                    if (exploreInput == 1)
+                    {
+
+                    }
+                    else if (exploreInput == 2)
+                    {
+                        cout << village.getOption("Look inside the house").getDescription() << endl;
+                        cout << village.getObstacle("Locked Door").getName() << endl;
+                        system("pause");
+                        if (village.getOption("Look inside the house").getOptionType() == village.getObstacle("Locked Door").getName())
+                        {
+                            village.exploreArea(player);
+                        }
+                    }
+                    else if (exploreInput == 3)
+                    {
+                        cout << "Nothing is found here..." << endl;
+                        system("pause");
+                        continue;
+                    }
+                    else if (exploreInput == 4)
+                    {
+                        cout << "Nothing is found here..." << endl;
+                        system("pause");
+                        continue;
+                    }
+                }
+            }
+            else if (userInput == 2)
+            {
+                openInventory(currentArea, player, isInside);
+            }
+            else if (userInput > 2)
+            {
+                currentArea = currentArea->getPathways()[userInput - 3];
+            }
+
+        }
+    }
 
 
     while (true) 
     {
         village.displayOptions();
 
-        int userInput = getUserInput(1, 4);
+        int userInput = getUserInput(1, currentArea->getOptionSize());
 
         if (userInput == 1)
         {
@@ -91,7 +186,7 @@ int main()
             system("pause");
             continue;
         }
-        openInventory(currentArea, player);
+        openInventory(currentArea, player, isInside);
         system("pause");
         
 
@@ -107,7 +202,7 @@ int main()
         }
         else if (userInput == 2)
         {
-            openInventory(currentArea, player);
+            openInventory(currentArea, player, isInside);
         }
         else if (userInput > 2)
         {
@@ -119,9 +214,10 @@ int main()
 
 void showMap(Area* currentArea)
 {
-    cout << "|=====================================================================================================================================================|" << endl;
-    cout << "|                                                                 You are at " << currentArea->getName() << endl;
-    cout << "|=====================================================================================================================================================|" << endl;
+    system("cls");
+    cout << "|===============================================================================================================|" << endl;
+    cout << "|                                            You are at " << currentArea->getName() << endl;
+    cout << "|===============================================================================================================|" << endl;
     currentArea->printMap();
     optionsHeader();
 
@@ -129,7 +225,7 @@ void showMap(Area* currentArea)
     cout << "[" << 1 << "]" << " " << currentArea->getExplore() << endl;
 
     //Second option of each area is to open the inventory
-    cout << "[" << 2 << "]" << "Open Inventory" << endl;
+    cout << "[" << 2 << "]" << " Open Inventory" << endl;
 
     //for loop to create pathways options (3 - pathways vector size)
     for (int i = 0; i < currentArea->getPathways().size(); i++)
@@ -140,10 +236,13 @@ void showMap(Area* currentArea)
 
 void exploreInside(Area* currentArea, Player& player)
 {
+    while (true)
+    {
+        bool isInside = true;
         system("cls");
-        cout << "|===================================================================================================================================================|" << endl;
+        cout << "|====================================================================================================================================================|" << endl;
         cout << "|                                                                 You are inside " << currentArea->getName() << endl;
-        cout << "|===================================================================================================================================================|" << endl;
+        cout << "|====================================================================================================================================================|" << endl;
         currentArea->printInside();
         optionsHeader();
         cout << "[" << 1 << "]" << " Go back to the global map" << endl;
@@ -154,21 +253,34 @@ void exploreInside(Area* currentArea, Player& player)
 
         if (userInput == 1)
         {
-            currentArea->printMap();
+            break;
         }
 
         else if (userInput == 2)
         {
-            //handle exploring the area
+            system("cls");
+            cout << "|====================================================================================================================================================|" << endl;
+            cout << "|                                                                 You are inside " << currentArea->getName() << endl;
+            cout << "|====================================================================================================================================================|" << endl;
+            currentArea->printInside();
+            optionsHeader();
+            currentArea->displayOptions();
+            int exploreInput = getUserInput(1, currentArea->getOptionSize() + 1);
+            break;
+            
         }
         else if (userInput == 3)
         {
-            openInventory(currentArea, player);
+            openInventory(currentArea, player, isInside);
         }
+    }
 }
 
-void openInventory(Area* currentArea,Player& player)
+void openInventory(Area* currentArea,Player& player, bool isInside)
 {
+    cout << "|==========================================|" << endl;
+    cout << "|            Your inventory    " << "            |" << endl;
+    cout << "|==========================================|" << endl;
     // if inventory is empty
     if (player.getInventory().empty()) 
     {
@@ -179,7 +291,7 @@ void openInventory(Area* currentArea,Player& player)
         // Loop through the inventory and display items
         for (auto& item : player.getInventory()) 
         {
-            cout << "[" << &item - &player.getInventory()[0] + 1 << "] " << item.getName() << ": " << item.getDescription() << endl;
+            cout << "[" << &item - &player.getInventory()[0] + 1 << "] " << item.getName() << endl;
         }
     }
     cout << "[" << player.getInventory().size() + 1 << "]" << " Go back" << endl;
@@ -187,10 +299,19 @@ void openInventory(Area* currentArea,Player& player)
 
     int choice = getUserInput(1, player.getInventory().size() + 1);
 
-    if (choice == player.getInventory().size() + 1) {
+    if (choice == player.getInventory().size() + 1) 
+    {
         // Go back to the previous area
         system("cls");  // Clear the screen
-        showMap(currentArea);  // Display the current area map again
+
+        if (isInside)
+        {
+            showMap(currentArea);
+        }
+        else
+        {
+            exploreInside(currentArea, player);
+        }
     }
     else 
     {
@@ -208,8 +329,15 @@ void openInventory(Area* currentArea,Player& player)
         if (backChoice == 1)
         {
             system("cls");
-            showMap(currentArea);  
-            openInventory(currentArea, player);
+
+            if (isInside)
+            {
+                showMap(currentArea);
+            }
+            else
+            {
+                exploreInside(currentArea, player);
+            }
         }
     }
 }
@@ -247,6 +375,6 @@ int getUserInput(int min, int max)
 void optionsHeader()    //Function to call optionHeader
 {
     cout << "|==========================================|" << endl;
-    cout << "|          Your options are:" << endl;
+    cout << "|            Your options are:" << "             |" << endl;
     cout << "|==========================================|" << endl;
 }
