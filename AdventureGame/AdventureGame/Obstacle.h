@@ -1,5 +1,8 @@
+class Area;
+
 #pragma once
 #include <string>
+#include "Area.h"
 
 using namespace std;
 
@@ -35,7 +38,7 @@ private:
     /**
     * @brief Flag indicating whether the obstacle is solved (default: false).
     */
-    bool solved = false;
+    bool solved;
 
     /**
     * @brief Name of an item that unlocks after solving this obstacle
@@ -52,6 +55,10 @@ private:
     */
     bool unlockNewPathway = false;
 
+    string obstacleType;
+    Area* toJoin[2];
+    Item obstacleItem;
+
 public:
     /**
     * @brief Constructs an Obstacle object.
@@ -60,7 +67,13 @@ public:
     * @param i_obsImage Path to the .txt file of the obstacle's ASCII image.
     * @param i_requiredItem Name of the item required to solve the obstacle.
     */
-    Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem);
+    Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Item i_obstacleItem);
+    Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Area* i_toJoin1, Area* i_toJoin2);
+
+    /**
+    * @brief An empty construct of an Obstacle object.
+    */
+    Obstacle();
 
     /**
     * @brief Retrieves the name of the obstacle
@@ -132,4 +145,13 @@ public:
     * @return unlockNewPathway = true;
     */
     bool getUnlockPathway();
+
+    //Joins pathways from toJoin array
+    void joinPathways();
+
+    //returns obstacle type
+    string getType();
+
+    //returns obstacle's item (that it gives)
+    Item getRewardItem();
 };

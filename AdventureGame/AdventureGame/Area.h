@@ -63,12 +63,17 @@ private:
     */
     vector<Obstacle> obstacles;
 
+
     /**
     * @brief Vector of options present inside the area.
     */
     vector<Option> options;
 
 public:
+    /**
+    * @brief An empty construct of an Area object.
+    */
+    Area();
 
     /**
     * @brief Constructs an Area object.
@@ -224,12 +229,30 @@ public:
     Option getOption(string i_description);
 
     /**
+    * @brief Getter for an index of an option
+    * @param i_index Index of that option
+    */
+    Option getOption(int i_index);
+
+    /**
+    * @brief Getter for all options inside an area
+    * @return All the options inside an area's vector
+    */
+    vector<Option> getOptions();
+
+    /**
     * @brief Displays all the options in the area in a list
     * @return Vector of options
     */
     void displayOptions();
 
+    /**
+    * @brief Gets all the size of the list of options inside an area
+    * @return The size of options inside an area
+    */
     int getOptionSize();
+
+    void updateOption(string oldOptionDescription, Option newOption);
 };
 
 

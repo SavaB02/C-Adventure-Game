@@ -2,6 +2,10 @@
 
 using namespace std;
 
+Item::Item()
+{
+}
+
 // Constructor
 Item::Item(string i_name, string i_description) 
 {

@@ -5,6 +5,7 @@
 #include "Area.h"       //include area class
 #include "Player.h"     //include player class
 #include <fstream>      //file input and output
+#include <set>
 
 using namespace std;
    
@@ -23,6 +24,8 @@ int main()
     Area gates("The Gates", "Head back to the Gates", "Assets/map_gates.txt", "Assets/inside_gates.txt");
     Area village("The Village", "Go towards the village", "Assets/map_village.txt", "Assets/inside_village.txt");
     Area forest("The forest", "Get near the forest", "Assets/map_forest.txt", "Assets/inside_forest.txt");
+    Area hut("The hut", "Check out the hut", "Assets/map_hut.txt", "Assets/inside_hut.txt");
+
 
     //Initialising the player and creating a pointer for the current area
     Player player("Player");  
@@ -41,35 +44,47 @@ int main()
 
     gates.addPathway(forest);
     forest.addPathway(gates);
-    
+
+    //A set to track which pathways are unlocked
+    set<string> unlockedPathways; 
+
     //Initial player item
     player.addItem(Item("Farewell Letter", "Go forth my child, find your ancestor's legacy!"));
+    player.addItem(Item("Bag", "Bag lol"));
 
     //Gates options
-    gates.addOption(Option("Read the sign", ""));
-    gates.addOption(Option("Check the right collumn",""));
-    gates.addOption(Option("Check the left collumn", ""));
+    gates.addOption(Option("Read the sign", "text", "The sign says you're cooked son."));
+    gates.addOption(Option("Check the right collumn","item", "You got a new item!", Item("Cool Sword", "This is a rad sword")));
+    gates.addOption(Option("Check the left collumn", "text", ""));
+
+    gates.addOption(Option("Dig behind the gate", "obstacle", "You find a chest!", Obstacle("Chest", "Wooden Chest", "chest.txt", "Wooden Key", "item", Item("Sword", "A cool looking sword"))));
+
+    gates.addOption(Option("Inspect tall", "obstacle", "You decided to inspect tall grass", Obstacle("Tall grass", "Tall grass is blocking the way, need something sharp.", "grass.txt", "Sword", "Path", &gates, &hut )));
 
     //Village options
-    village.addOption(Option("Look inside the house", "Locked Door"));
-    village.addOption(Option("Check the roof", ""));
-    village.addOption(Option("Walk inside the stables", ""));
+    village.addOption(Option("Look inside the house", "obstacle", ""));
+    village.addOption(Option("Check the roof", "item", ""));
+    village.addOption(Option("Walk inside the stables", "text", ""));
 
     //Village obstacles
-    village.addObstacle(Obstacle("Door", "Door with a lock", "obstacle_door.txt", "Copper Key"));
-    village.addObstacle(Obstacle("Tree", "The path is blocked by a fallen tree. Without an axe, getting through seems imposible.", "obstacle_tree.txt", "Rusty Axe"));
+    
+    village.addObstacle(Obstacle("Locked Door", "Door with a lock", "obstacle_door.txt", "Copper Key", "item", Item("Eggs", "Some fine eggs")));
+    village.addObstacle(Obstacle("Tree", "The path is blocked by a fallen tree. Without an axe, getting through seems imposible.", "obstacle_tree.txt", "Rusty Axe", "pathway", &village, &hut ));
 
     //Forest options
-    forest.addOption(Option("Climb the tree", ""));
-    forest.addOption(Option("Meditate", ""));
-    forest.addOption(Option("Examine the vines", "Weathered Katana"));
+    forest.addOption(Option("Climb the tree", "obstacle", "You find a nest with eggs"));
+    forest.addObstacle(Obstacle("Climb the tree", "You see a couple of nice eggs. If only you had something to stash them into", "obstacle_tree.txt", "Bag", "item", Item("Eggs", "Some fine eggs")));
+
+    forest.addOption(Option("Meditate", "item", "You got a new item!", Item("Weathered Katana", "This is a rad sword")));
+
+    forest.addOption(Option("Examine the vines", "obstacle", "You encounted vines"));
+
+    //forest.addObstacle(Obstacle("Vines", "Twisting vines and overgrown brush bar the way. Cutting through is the only option", "obstacle_vines.txt", "Weathered Katana", "pathway", { &forest, &hut }));
+
 
     //Forest obstacles
-    forest.addObstacle(Obstacle("Vines", "Twisting vines and overgrown brush bar the way. Cutting through is the only option", "obstacle_vines.txt", "Weathered Katana"));
 
     //Main Game Logic
-    while (true)
-    {
         cout << "Please, fullscreen the game for better experience" << endl;
         cout << "Fading Echoes" << endl;
         cout << "Game description" << endl;
@@ -78,68 +93,26 @@ int main()
 
         while (true)
         {
+            if (forest.getObstacle("Vines").isSolved())
+            {
+                forest.getOption("Examine the vines").solve();
+                player.addItem(Item("Vine", "Vine rememberance"));
+            }
+
+            if (player.hasItem("Vine") and unlockedPathways.find("forest-hut") == unlockedPathways.end())
+            {
+                forest.addPathway(hut);
+                hut.addPathway(forest);
+                hut.setExplore("Go inside the hut");
+                unlockedPathways.insert("forest-hut");
+            }
+
             showMap(currentArea);
             int userInput = getUserInput(1, currentArea->getPathways().size() + 2);
             if (userInput == 1)
             {
                 exploreInside(currentArea, player);
-                if (currentArea->getName() == gates.getName())
-                {
-                    if (exploreInput == 1)
-                    {
-
-                    }
-                    else if (exploreInput == 2)
-                    {
-                        cout << userInput << endl;
-                        cin >> userInput;
-                        /*cout << "It reads: Broken land" << endl;
-                        system("pause");
-                        continue;*/
-                    }
-                    else if (exploreInput == 3)
-                    {
-                        cout << "nothing is found here..." << endl;
-                        system("pause");
-                        continue;
-                    }
-                    else if (exploreInput == 4)
-                    {
-                        cout << "You find an axe!" << endl;
-                        player.addItem(Item("Axe", "Rusty Axe"));
-                        system("pause");
-                        continue;
-                    }
-                }
-                else if (currentArea->getName() == village.getName())
-                {
-                    if (exploreInput == 1)
-                    {
-
-                    }
-                    else if (exploreInput == 2)
-                    {
-                        cout << village.getOption("Look inside the house").getDescription() << endl;
-                        cout << village.getObstacle("Locked Door").getName() << endl;
-                        system("pause");
-                        if (village.getOption("Look inside the house").getOptionType() == village.getObstacle("Locked Door").getName())
-                        {
-                            village.exploreArea(player);
-                        }
-                    }
-                    else if (exploreInput == 3)
-                    {
-                        cout << "Nothing is found here..." << endl;
-                        system("pause");
-                        continue;
-                    }
-                    else if (exploreInput == 4)
-                    {
-                        cout << "Nothing is found here..." << endl;
-                        system("pause");
-                        continue;
-                    }
-                }
+;
             }
             else if (userInput == 2)
             {
@@ -149,66 +122,7 @@ int main()
             {
                 currentArea = currentArea->getPathways()[userInput - 3];
             }
-
         }
-    }
-
-
-    while (true) 
-    {
-        village.displayOptions();
-
-        int userInput = getUserInput(1, currentArea->getOptionSize());
-
-        if (userInput == 1)
-        {
-            
-        }
-        else if (userInput == 2)
-        {
-            cout << village.getOption("Look inside the house").getDescription() << endl;
-            cout << village.getObstacle("Locked Door").getName() << endl;
-            system("pause");
-            if (village.getOption("Look inside the house").getOptionType() == village.getObstacle("Locked Door").getName())
-            {
-                village.exploreArea(player);
-            }
-        }
-        else if (userInput == 3)
-        {
-            cout << "Nothing is found here..." << endl;
-            system("pause");
-            continue;
-        }
-        else if (userInput == 4)
-        {
-            cout << "Nothing is found here..." << endl;
-            system("pause");
-            continue;
-        }
-        openInventory(currentArea, player, isInside);
-        system("pause");
-        
-
-        system("cls");
-        showMap(currentArea);
-
-        userInput = getUserInput(1, currentArea->getPathways().size() + 2);
-        
-
-        if (userInput == 1)
-        {
-            exploreInside(currentArea, player);
-        }
-        else if (userInput == 2)
-        {
-            openInventory(currentArea, player, isInside);
-        }
-        else if (userInput > 2)
-        {
-            currentArea = currentArea->getPathways()[userInput - 3];
-        }
-    }
 }
 
 
@@ -236,9 +150,9 @@ void showMap(Area* currentArea)
 
 void exploreInside(Area* currentArea, Player& player)
 {
+    bool isInside = true;
     while (true)
     {
-        bool isInside = true;
         system("cls");
         cout << "|====================================================================================================================================================|" << endl;
         cout << "|                                                                 You are inside " << currentArea->getName() << endl;
@@ -253,7 +167,7 @@ void exploreInside(Area* currentArea, Player& player)
 
         if (userInput == 1)
         {
-            break;
+            return;
         }
 
         else if (userInput == 2)
@@ -266,7 +180,44 @@ void exploreInside(Area* currentArea, Player& player)
             optionsHeader();
             currentArea->displayOptions();
             int exploreInput = getUserInput(1, currentArea->getOptionSize() + 1);
-            break;
+            system("cls");
+            cout << "|====================================================================================================================================================|" << endl;
+            cout << "|                                                                 You are inside " << currentArea->getName() << endl;
+            cout << "|====================================================================================================================================================|" << endl;
+            currentArea->printInside();
+            optionsHeader();
+
+            if (currentArea->getOption(exploreInput-2).getOptionType() == "text") 
+            {
+                cout << currentArea->getOption(exploreInput-2).getOptionText() << endl;
+                cout << "Press any key to continue..." << endl;
+                cin.ignore();
+                cin.get();
+
+            }
+            else if (currentArea->getOption(exploreInput - 2).getOptionType() == "item") 
+            {
+                cout << currentArea->getOption(exploreInput - 2).getOptionText() << endl;
+                player.addItem(currentArea->getOption(exploreInput - 2).getOptionItem());
+                cout << "Press any key to continue..." << endl;
+                cin.ignore();
+                cin.get();
+            }    
+            else if (currentArea->getOption(exploreInput - 2).getOptionType() == "obstacle")
+            {
+                currentArea->exploreArea(player);
+            }
+            
+
+            if (isInside)
+            {
+                showMap(currentArea);
+            }
+            else
+            {
+                exploreInside(currentArea, player);
+            }
+
             
         }
         else if (userInput == 3)

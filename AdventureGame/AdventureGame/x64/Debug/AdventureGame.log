@@ -1,5 +1,137 @@
 ﻿  AdventureGame.cpp
-C:\Users\savel\Desktop\C-Adventure-Game\AdventureGame\AdventureGame\AdventureGame.cpp(82,79): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\savel\Desktop\C-Adventure-Game\AdventureGame\AdventureGame\AdventureGame.cpp(196,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\savel\Desktop\C-Adventure-Game\AdventureGame\AdventureGame\AdventureGame.cpp(300,63): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  AdventureGame.vcxproj -> C:\Users\savel\Desktop\C-Adventure-Game\AdventureGame\x64\Debug\AdventureGame.exe
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\AdventureGame.cpp(111,79): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\AdventureGame.cpp(251,63): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Area.cpp
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.cpp(339,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Obstacle.cpp
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Option.h(15,11): error C3646: 'optionObstacle': unknown override specifier
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Option.h(15,2): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Option.h(21,73): error C2061: syntax error: identifier 'Obstacle'
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Option.h(21,2): error C2535: 'Option::Option(std::string,std::string,std::string)': member function already defined or declared
+  (compiling source file 'Obstacle.cpp')
+      C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Option.h(19,2):
+      see declaration of 'Option::Option'
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Option.h(31,11): error C3646: 'getOptionObstacle': unknown override specifier
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Option.h(31,28): error C2059: syntax error: '('
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Option.h(31,30): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(64,12): error C2065: 'Obstacle': undeclared identifier
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(64,5): error C2923: 'std::vector': 'Obstacle' is not a valid template type argument for parameter '_Ty'
+  (compiling source file 'Obstacle.cpp')
+      C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(64,12):
+      see declaration of 'Obstacle'
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(64,5): error C2976: 'std::vector': too few template arguments
+  (compiling source file 'Obstacle.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vector(429,7):
+      see declaration of 'std::vector'
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(175,22): error C2061: syntax error: identifier 'Obstacle'
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(181,13): error C2143: syntax error: missing ';' before '&'
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(181,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(181,41): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'Obstacle.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(197,34): error C2061: syntax error: identifier 'Obstacle'
+  (compiling source file 'Obstacle.cpp')
+  
+  Option.cpp
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(64,12): error C2065: 'Obstacle': undeclared identifier
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(64,5): error C2923: 'std::vector': 'Obstacle' is not a valid template type argument for parameter '_Ty'
+  (compiling source file 'Option.cpp')
+      C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(64,12):
+      see declaration of 'Obstacle'
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(64,5): error C2976: 'std::vector': too few template arguments
+  (compiling source file 'Option.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vector(429,7):
+      see declaration of 'std::vector'
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(70,12): error C2065: 'Option': undeclared identifier
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(70,5): error C2923: 'std::vector': 'Option' is not a valid template type argument for parameter '_Ty'
+  (compiling source file 'Option.cpp')
+      C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(70,12):
+      see declaration of 'Option'
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(70,5): error C2976: 'std::vector': too few template arguments
+  (compiling source file 'Option.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vector(429,7):
+      see declaration of 'std::vector'
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(175,22): error C2061: syntax error: identifier 'Obstacle'
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(181,13): error C2143: syntax error: missing ';' before '&'
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(181,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(181,41): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(197,34): error C2061: syntax error: identifier 'Obstacle'
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(223,20): error C2061: syntax error: identifier 'Option'
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(229,12): error C3646: 'getOption': unknown override specifier
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(229,21): error C2059: syntax error: '('
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(229,43): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(235,12): error C3646: 'getOption': unknown override specifier
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(235,21): error C2059: syntax error: '('
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(235,34): error C2238: unexpected token(s) preceding ';'
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(241,12): error C2065: 'Option': undeclared identifier
+  (compiling source file 'Option.cpp')
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(241,5): error C2923: 'std::vector': 'Option' is not a valid template type argument for parameter '_Ty'
+  (compiling source file 'Option.cpp')
+      C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(241,12):
+      see declaration of 'Option'
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(241,5): error C2976: 'std::vector': too few template arguments
+  (compiling source file 'Option.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\vector(429,7):
+      see declaration of 'std::vector'
+  
+C:\Users\savel\Desktop\C-Adventure-Game NEW (FiXED)\AdventureGame\AdventureGame\Area.h(255,52): error C2061: syntax error: identifier 'Option'
+  (compiling source file 'Option.cpp')
+  
+  Generating Code...

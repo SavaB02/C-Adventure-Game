@@ -2,8 +2,8 @@
 #include <fstream>      //file input and output
 #include <iostream>
 
-
-Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem)
+//Obstacle that gives an item after solving
+Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Item i_obstacleItem)
 {
 	name = i_name;
 	description = i_description;
@@ -12,6 +12,30 @@ Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, strin
 	unlockItemDescription = "";
 	unlockItemName = "";
 	unlockNewPathway = false;
+	solved = false;
+	obstacleType = i_obstacleType;
+	obstacleItem = i_obstacleItem;
+}
+
+//Obstacle that opens a path after solving
+Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Area* i_toJoin1, Area* i_toJoin2)
+{
+	name = i_name;
+	description = i_description;
+	obsImage = i_obsImage;
+	requiredItem = i_requiredItem;
+	unlockItemDescription = "";
+	unlockItemName = "";
+	unlockNewPathway = false;
+	solved = false;
+	obstacleType = i_obstacleType;
+	obstacleItem = Item();
+	toJoin[0] = i_toJoin1;
+	toJoin[1] = i_toJoin2;
+}
+
+Obstacle::Obstacle()
+{
 	solved = false;
 }
 
@@ -84,4 +108,20 @@ void Obstacle::setUnlockPathway()
 bool Obstacle::getUnlockPathway()
 {
 	return unlockNewPathway;
+}
+
+void Obstacle::joinPathways()
+{
+	toJoin[0]->addPathway(*(toJoin[1]));
+	toJoin[1]->addPathway(*(toJoin[0]));
+}
+
+string Obstacle::getType()
+{
+	return obstacleType;
+}
+
+Item Obstacle::getRewardItem()
+{
+	return obstacleItem;
 }

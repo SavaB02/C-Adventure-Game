@@ -5,6 +5,10 @@
 //	Area class
 
 
+Area::Area()
+{
+}
+
 Area::Area(string i_name, string i_farDescription, string i_mapPath, string i_mapInsidePath)
 {
 	name = i_name;
@@ -137,8 +141,8 @@ bool Area::hasItems()	// Returns true if there are items, false if the vector is
 
 void Area::exploreArea(Player& player)
 {
-	for (auto& obstacle : obstacles) //iterates through each obstacle in the obstacles vector
-	{				
+	for (Obstacle& obstacle : obstacles) //iterates through each obstacle in the obstacles vector
+	{	
 		if (!obstacle.isSolved()) //if isSolved = false, then it list options
 		{					
 			int choice = 0;
@@ -169,7 +173,6 @@ void Area::exploreArea(Player& player)
 					{
 						// Let the player use an item from the inventory
 						useItem(player, obstacle);
-						continue;
 					}
 					else if (choice == 3) 
 					{
@@ -186,25 +189,31 @@ bool Area::useItem(Player& player, Obstacle& obstacle)
 {
 	// Display the player's inventory
 	cout << "Choose an item to use:" << endl;
-	for (int i = 0; i < player.getInventory().size(); ++i) {
-		cout << i + 1 << ") " << player.getInventory()[i].getName() << endl;
+	for (int i = 0; i < player.getInventory().size(); ++i) 
+	{
+		cout << "[" << i + 1 << "] " << player.getInventory()[i].getName() << endl;
 	}
 
 	int itemChoice;
 	bool validInput = false;
 
-	while (!validInput) {
-		cout << "Enter your choice (1-" << player.getInventory().size() << "): ";
-		if (cin >> itemChoice) {
+	while (!validInput) 
+	{
+		cout << "Enter your choice [1-" << player.getInventory().size() << "]: ";
+		if (cin >> itemChoice) 
+		{
 			// Check if the choice is within the valid range
-			if (itemChoice >= 1 && itemChoice <= player.getInventory().size()) {
+			if (itemChoice >= 1 && itemChoice <= player.getInventory().size()) 
+			{
 				validInput = true; // Input is valid, exit loop
 			}
-			else {
+			else 
+			{
 				cout << "Invalid choice! Please choose a number between 1 and " << player.getInventory().size() << "." << endl;
 			}
 		}
-		else {
+		else 
+		{
 			// If input is not an integer (e.g., user enters a letter or symbol)
 			cout << "Invalid input! Please enter a number between 1 and " << player.getInventory().size() << "." << endl;
 			cin.clear(); // Clear the error state
@@ -222,37 +231,59 @@ bool Area::useItem(Player& player, Obstacle& obstacle)
 		obstacle.solve();  // Mark the obstacle as solved
 		player.removeItem(selectedItem.getName());  // Remove item from inventory
 
-		// Check if the obstacle unlocks a new item
-		string unlockableItemName = obstacle.getUnlockItemName();
-		if (!unlockableItemName.empty()) 
-		{
-			string unlockableItemDescription = obstacle.getUnlockItemDescription();
-			// Add the unlocked item to the player's inventory
-			player.addItem(Item(unlockableItemName, unlockableItemDescription));
-			cout << "You unlocked a new item: " << unlockableItemName << "!" << endl;
-		}
 
-		// Check if the obstacle unlocks a new pathway
-		if (obstacle.getUnlockPathway())
-		{
-			// Unlock the new pathway
-			cout << "You unlocked a new path!" << endl;
-			obstacle.setUnlockPathway();
-			// Here, you would typically mark the area or level as unlocked in your game logic
-			// For example, you might add the new path to the current area or update available pathways
+		if (obstacle.getType() == "pathway") {
+			cout << "A new pathway is unlocked!" << endl;
+			obstacle.joinPathways();
 		}
+		else if (obstacle.getType() == "item") {
+			player.addItem(obstacle.getRewardItem());
+		}
+		else {
+			cout << "error." << endl;
+		}
+		
+
+		
+
+
+		////USELESS
+		//// Check if the obstacle unlocks a new item
+		//string unlockableItemName = obstacle.getUnlockItemName();
+
+		////MB USELESS ALREADY
+		//if (!unlockableItemName.empty()) 
+		//{
+		//	string unlockableItemDescription = obstacle.getUnlockItemDescription();
+		//	// Add the unlocked item to the player's inventory
+		//	player.addItem(Item(unlockableItemName, unlockableItemDescription));
+		//	cout << "You unlocked a new item: " << unlockableItemName << "!" << endl;
+		//}
+
+		////ALSO USELESS
+		//// Check if the obstacle unlocks a new pathway
+		//if (obstacle.getUnlockPathway())
+		//{
+		//	// Unlock the new pathway
+		//	cout << "You unlocked a new path!" << endl;
+		//	obstacle.setUnlockPathway();
+		//}
 
 		// Add a pause before returning
-		cout << "\nPress Enter to continue...";
+		cout << "Press any key to continue...";
 		cin.ignore();
-		cin.get();  // Wait for user input before exiting
+		cin.get();
 
 		// Exit function after solving the obstacle
 		return true;
 
 	}
-	else {
+	else 
+	{
 		cout << "This item does not work on the obstacle." << endl;
+		cout << "Press any key to continue...";
+		cin.ignore();
+		cin.get();  // Wait for user input before exiting
 		return false;
 	}
 }
@@ -264,7 +295,7 @@ void Area::addOption(Option i_option)
 
 Option Area::getOption(string i_description)
 {
-	for (auto& option : options) 
+	for (Option option : options) 
 	{
 		if (option.getDescription() == i_description) 
 		{
@@ -272,7 +303,17 @@ Option Area::getOption(string i_description)
 		}
 	}
 	// If no option found return empty option
-	return Option("", "");
+	return Option("", "", "");
+}
+
+Option Area::getOption(int i_index)
+{
+	return options[i_index];
+}
+
+vector<Option> Area::getOptions()
+{
+	return options;
 }
 
 void Area::displayOptions()
@@ -282,11 +323,29 @@ void Area::displayOptions()
 	// Display the rest of the options
 	for (int i = 0; i < options.size(); ++i) 
 	{
-		cout << "[" << i + 2 << "] " << options[i].getDescription() << endl;
+		if (!options[i].getOptionInteracted()) 
+		{
+			cout << "[" << i + 2 << "] " << options[i].getDescription() << endl;
+		}
+		
 	}
+
+
+	//some logic to output only those options that has hasInteracted as false
 }
 
 int Area::getOptionSize()
 {
 	return options.size();
+}
+
+void Area::updateOption(string oldOptionDescription, Option newOption) 
+{
+	for (Option option : options) 
+	{
+		if (option.getDescription() == oldOptionDescription) // Find the matching option
+		{  
+			option = newOption;
+		}
+	}
 }

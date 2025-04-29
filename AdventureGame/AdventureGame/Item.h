@@ -25,6 +25,11 @@ private:
 
 public:
     /**
+    * @brief An empty construct of an Item object.
+    */
+    Item();
+
+    /**
     * @brief Constructs an Item object.
     * @param i_name The name of the item.
     * @param i_description The description of the item.
