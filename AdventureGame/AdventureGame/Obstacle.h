@@ -1,10 +1,12 @@
-class Area;
-
 #pragma once
 #include <string>
-#include "Area.h"
+#include <fstream>      //file input and output
+#include <iostream>
+#include "Item.h"
 
 using namespace std;
+
+class Area;
 
 /**
 * @class Obstacle

@@ -34,9 +34,9 @@ private:
     string explore;
 
     /**
-    * @brief Description of the area from another area's perspective.
+    * @brief Overview of the area from another area's perspective.
     */
-    string farDescription;
+    string overview;
 
     /**
     * @brief Vector of items present inside the area.
@@ -78,11 +78,11 @@ public:
     /**
     * @brief Constructs an Area object.
     * @param i_name The name of the area.
-    * @param i_farDescription The description of the area from another area’s perspective.
+    * @param i_overview The overview of the area from another area’s perspective.
     * @param i_mapPath Path to the .txt file representing the area on the map.
     * @param i_mapInsidePath Path to the .txt file representing the inside zone of the area.
     */
-    Area(string i_name, string i_farDescription, string i_mapPath, string i_mapInsidePath);
+    Area(string i_name, string i_overview, string i_mapPath, string i_mapInsidePath);
 
     // Getters and Setters for parameters -----------------------------
 
@@ -123,16 +123,16 @@ public:
     string getExplore();
 
     /**
-    * @brief Sets the description of the area from another area’s perspective.
-    * @param farDescription The far description of the area.
+    * @brief Sets the overview of the area from another area’s perspective.
+    * @param overview The overview of the area.
     */
-    void setFarDescription(string farDescription);
+    void setOverview(string overview);
 
     /**
-    * @brief Retrieves the far description of the area.
-    * @return The far description of the area.
+    * @brief Retrieves the overview of the area.
+    * @return The overview of the area.
     */
-    string getFarDescription();
+    string getOverview();
 
     // Pathways --------------------------------------------------------
 
@@ -230,9 +230,9 @@ public:
 
     /**
     * @brief Getter for an index of an option
-    * @param i_index Index of that option
+    * @param i_index Index of an option you want to get
     */
-    Option getOption(int i_index);
+    Option& getOption(int i_index);
 
     /**
     * @brief Getter for all options inside an area

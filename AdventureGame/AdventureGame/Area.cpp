@@ -9,10 +9,10 @@ Area::Area()
 {
 }
 
-Area::Area(string i_name, string i_farDescription, string i_mapPath, string i_mapInsidePath)
+Area::Area(string i_name, string i_overview, string i_mapPath, string i_mapInsidePath)
 {
 	name = i_name;
-	farDescription = i_farDescription;
+	overview = i_overview;
 	mapPath = i_mapPath;
 	mapInsidePath = i_mapInsidePath;
 }
@@ -48,14 +48,14 @@ string Area::getExplore()
 	return explore;
 }
 
-void Area::setFarDescription(string new_farDescription)
+void Area::setOverview(string new_overview)
 {
-	farDescription = new_farDescription;
+	overview = new_overview;
 }
 
-string Area::getFarDescription()
+string Area::getOverview()
 {
-	return farDescription;
+	return overview;
 }
 
 
@@ -108,6 +108,7 @@ void Area::addObstacle(Obstacle i_obstacle)
 Obstacle& Area::getObstacle(string i_name)
 {
 	for (auto& obstacle : obstacles) {
+		cout << obstacle.getName() << endl;
 		if (obstacle.getName() == i_name) {
 			return obstacle;	//return the found obstacle
 		}
@@ -143,7 +144,7 @@ void Area::exploreArea(Player& player)
 {
 	for (Obstacle& obstacle : obstacles) //iterates through each obstacle in the obstacles vector
 	{	
-		if (!obstacle.isSolved()) //if isSolved = false, then it list options
+		if (!obstacle.isSolved()) //if isSolved = false, then it shows that obstacle
 		{					
 			int choice = 0;
 
@@ -153,6 +154,9 @@ void Area::exploreArea(Player& player)
 				cout << "[1] Inspect" << endl;
 				cout << "[2] Use Item" << endl;
 				cout << "[3] Leave" << endl;
+
+				cin >> choice;
+
 
 				//if loop to validate that the input is an integer and is within valid range (1-3)
 				if (!(cin >> choice) or choice < 1 or choice > 3)
@@ -306,7 +310,7 @@ Option Area::getOption(string i_description)
 	return Option("", "", "");
 }
 
-Option Area::getOption(int i_index)
+Option& Area::getOption(int i_index)
 {
 	return options[i_index];
 }
@@ -318,14 +322,14 @@ vector<Option> Area::getOptions()
 
 void Area::displayOptions()
 {
-	cout << "[1] Go back" << endl; 
+	cout << "|| [1] Go back to the global map" << endl; 
 
 	// Display the rest of the options
 	for (int i = 0; i < options.size(); ++i) 
 	{
-		if (!options[i].getOptionInteracted()) 
+		if (!options[i].getHasInteracted()) 
 		{
-			cout << "[" << i + 2 << "] " << options[i].getDescription() << endl;
+			cout << "|| [" << i + 2 << "] " << options[i].getDescription() << endl;
 		}
 		
 	}

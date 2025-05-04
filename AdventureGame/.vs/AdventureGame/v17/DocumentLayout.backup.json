@@ -1,56 +1,50 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\",
+  "WorkspaceRootPath": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Obstacle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Obstacle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Option.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Option.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Obstacle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Obstacle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Area.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Area.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\AdventureGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\AdventureGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\AdventureGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Item.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Item.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Option.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Option.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Area.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Area.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Area.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Item.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Item.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Option.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Option.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Item.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Item.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Obstacle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Obstacle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Obstacle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Obstacle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Area.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Area.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Option.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Option.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Assets\\ascii_test.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\savel\\Desktop\\ascii_test.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Item.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AB590805-ADC5-4FB8-A0CF-7B595639305C}|AdventureGame\\AdventureGame.vcxproj|solutionrelative:AdventureGame\\Item.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -60,38 +54,27 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ascii_test.txt",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Assets\\ascii_test.txt",
-              "RelativeDocumentMoniker": "..\\..\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Assets\\ascii_test.txt",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Assets\\ascii_test.txt",
-              "RelativeToolTip": "..\\..\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Assets\\ascii_test.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-03-13T20:05:14.507Z"
+              "DocumentIndex": 2,
+              "Title": "Option.cpp",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Option.cpp",
+              "RelativeDocumentMoniker": "AdventureGame\\Option.cpp",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Option.cpp",
+              "RelativeToolTip": "AdventureGame\\Option.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-29T10:00:59.671Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ascii_test.txt",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\ascii_test.txt",
-              "RelativeDocumentMoniker": "..\\..\\ascii_test.txt",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\ascii_test.txt",
-              "RelativeToolTip": "..\\..\\ascii_test.txt",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-03-13T20:03:13.314Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "Player.cpp",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Player.cpp",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Player.cpp",
               "RelativeDocumentMoniker": "AdventureGame\\Player.cpp",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Player.cpp",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Player.cpp",
               "RelativeToolTip": "AdventureGame\\Player.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
@@ -99,11 +82,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "Player.h",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Player.h",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Player.h",
               "RelativeDocumentMoniker": "AdventureGame\\Player.h",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Player.h",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Player.h",
               "RelativeToolTip": "AdventureGame\\Player.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
@@ -111,119 +94,99 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Area.h",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Area.h",
-              "RelativeDocumentMoniker": "AdventureGame\\Area.h",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Area.h",
-              "RelativeToolTip": "AdventureGame\\Area.h",
-              "ViewState": "AgIAAOEAAAAAAAAAAAAAAP8AAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-13T12:12:36.419Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Item.cpp",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Item.cpp",
-              "RelativeDocumentMoniker": "AdventureGame\\Item.cpp",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Item.cpp",
-              "RelativeToolTip": "AdventureGame\\Item.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-13T11:59:37.529Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Item.h",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Item.h",
-              "RelativeDocumentMoniker": "AdventureGame\\Item.h",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Item.h",
-              "RelativeToolTip": "AdventureGame\\Item.h",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-13T11:54:49.006Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Area.cpp",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Area.cpp",
-              "RelativeDocumentMoniker": "AdventureGame\\Area.cpp",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Area.cpp",
-              "RelativeToolTip": "AdventureGame\\Area.cpp",
-              "ViewState": "AgIAAM0AAAAAAAAAAAAgwOwAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-13T12:37:59.542Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdventureGame.cpp",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\AdventureGame.cpp",
-              "RelativeDocumentMoniker": "AdventureGame\\AdventureGame.cpp",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\AdventureGame.cpp",
-              "RelativeToolTip": "AdventureGame\\AdventureGame.cpp",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAJMAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-02T18:41:15.332Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Obstacle.h",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Obstacle.h",
-              "RelativeDocumentMoniker": "AdventureGame\\Obstacle.h",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Obstacle.h",
-              "RelativeToolTip": "AdventureGame\\Obstacle.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-14T20:58:41.475Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Obstacle.cpp",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Obstacle.cpp",
-              "RelativeDocumentMoniker": "AdventureGame\\Obstacle.cpp",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Obstacle.cpp",
-              "RelativeToolTip": "AdventureGame\\Obstacle.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-14T21:09:21.475Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Option.h",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Option.h",
-              "RelativeDocumentMoniker": "AdventureGame\\Option.h",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Option.h",
-              "RelativeToolTip": "AdventureGame\\Option.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-16T23:42:49.767Z",
-              "EditorCaption": ""
+              "Title": "Area.cpp",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Area.cpp",
+              "RelativeDocumentMoniker": "AdventureGame\\Area.cpp",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Area.cpp",
+              "RelativeToolTip": "AdventureGame\\Area.cpp",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAEwJ4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-13T12:37:59.542Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Option.cpp",
-              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Option.cpp",
-              "RelativeDocumentMoniker": "AdventureGame\\Option.cpp",
-              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game NEW (FiXED)\\AdventureGame\\AdventureGame\\Option.cpp",
-              "RelativeToolTip": "AdventureGame\\Option.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAdAAAAAAAAAA==",
+              "Title": "Area.h",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Area.h",
+              "RelativeDocumentMoniker": "AdventureGame\\Area.h",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Area.h",
+              "RelativeToolTip": "AdventureGame\\Area.h",
+              "ViewState": "AgIAADoAAAAAAAAAAAAEwEsAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-13T12:12:36.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Item.cpp",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Item.cpp",
+              "RelativeDocumentMoniker": "AdventureGame\\Item.cpp",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Item.cpp",
+              "RelativeToolTip": "AdventureGame\\Item.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-16T23:45:55.092Z",
+              "WhenOpened": "2025-03-13T11:59:37.529Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Item.h",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Item.h",
+              "RelativeDocumentMoniker": "AdventureGame\\Item.h",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Item.h",
+              "RelativeToolTip": "AdventureGame\\Item.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-13T11:54:49.006Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Obstacle.h",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Obstacle.h",
+              "RelativeDocumentMoniker": "AdventureGame\\Obstacle.h",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Obstacle.h",
+              "RelativeToolTip": "AdventureGame\\Obstacle.h",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAFIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-14T20:58:41.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Obstacle.cpp",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Obstacle.cpp",
+              "RelativeDocumentMoniker": "AdventureGame\\Obstacle.cpp",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Obstacle.cpp",
+              "RelativeToolTip": "AdventureGame\\Obstacle.cpp",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAUwIEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-14T21:09:21.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Option.h",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Option.h",
+              "RelativeDocumentMoniker": "AdventureGame\\Option.h",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\Option.h",
+              "RelativeToolTip": "AdventureGame\\Option.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-16T23:42:49.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdventureGame.cpp",
+              "DocumentMoniker": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\AdventureGame.cpp",
+              "RelativeDocumentMoniker": "AdventureGame\\AdventureGame.cpp",
+              "ToolTip": "C:\\Users\\savel\\Desktop\\C-Adventure-Game\\AdventureGame\\AdventureGame\\AdventureGame.cpp",
+              "RelativeToolTip": "AdventureGame\\AdventureGame.cpp",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAPAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-02T18:41:15.332Z",
               "EditorCaption": ""
             }
           ]

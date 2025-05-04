@@ -51,13 +51,13 @@ Obstacle Option::getOptionObstacle()
 	return optionObstacle;
 }
 
-bool Option::getOptionInteracted()
+bool Option::getHasInteracted()
 {
-	return hasInteracted;;
+	return hasInteracted;
 }
 
 //Marks the option as interacted 
-void Option::solve()
+void Option::solveInteracted()
 {
 	hasInteracted = true;
 }

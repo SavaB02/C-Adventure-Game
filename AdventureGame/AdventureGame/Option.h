@@ -30,8 +30,8 @@ public:
 
 	Obstacle getOptionObstacle();
 
-	bool getOptionInteracted();
+	bool getHasInteracted();
 
-	void solve();
+	void solveInteracted();
 };
 

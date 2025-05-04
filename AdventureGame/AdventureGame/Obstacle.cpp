@@ -1,6 +1,7 @@
 #include "Obstacle.h"
-#include <fstream>      //file input and output
-#include <iostream>
+#include "Area.h"
+
+
 
 //Obstacle that gives an item after solving
 Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Item i_obstacleItem)
@@ -33,6 +34,7 @@ Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, strin
 	toJoin[0] = i_toJoin1;
 	toJoin[1] = i_toJoin2;
 }
+
 
 Obstacle::Obstacle()
 {
