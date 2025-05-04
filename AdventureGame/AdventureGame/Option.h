@@ -28,10 +28,11 @@ public:
 
 	Item getOptionItem();
 
-	Obstacle getOptionObstacle();
+	Obstacle& getOptionObstacle();
 
 	bool getHasInteracted();
 
 	void solveInteracted();
+
 };
 

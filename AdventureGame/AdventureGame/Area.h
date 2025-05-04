@@ -187,7 +187,7 @@ public:
     * 3) Leave the obstacle (go back to the area’s inside zone).
     * @param player The player interacting with the obstacle.
     */
-    void exploreArea(Player& player);
+    void exploreArea(Player& player, Option& option);
 
     /**
     * @brief Allows the player to choose an item from their inventory and checks if it is the correct item to solve the obstacle.

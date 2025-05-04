@@ -1,0 +1,32 @@
+||================================================================================================================||
+||						   Fading Tome	                                                  ||
+||================================================================================================================||
+||                                                                                                                ||
+||              ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::.             ||
+||              x$$XXXXXXXXXX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$;             ||
+||              x$XXXXX$$XxxxX$$$$$$$$$$$$xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxX$;             ||
+||              x$XX$$XXXXxxXXxxX$$$$$XXXX++;;;;;;;;;;;;;;;;;;;;;;;;;x;;;;;;;;;;;;;;;;;;;;;;;;;+xxX$;             ||
+||              x$XX$XxXxxxxxxxxxXXXXXXXXX++;;;;;;;+;;;;;;;;;;;;;;;;;xxx+x;;;;;;xxx+;;;;;++;++;;+xX$;             ||
+||              x$XXXxXXxxxXxxXXXXxxxXxXXX++;;;;;;x+;;;;;;;;;;;;;;;;;+xxx+;;;;;;+x+x;;;;;+++++;;+xX$;             ||
+||              x$XX$xXxXxXxxxXxxXxxxXxxXx++;;;;;;;;;;;;;;;;;;;;;;;;;;+;;;;;;;;;+;;;;;;;;;;;;;;;+xX$;             ||
+||              x$X$$XxxxXxxxxxxxxxxxxXXXxxxxxxx++xxxxxxxxxxxxxxxx++++++++++++++++++++++++++++++xxX$;             ||
+||              x$XX$$XxxxxxXxXXxxxxXxXXXXXXXxX$$$$$$$$$$$$$$$$$$$$$$$$$$XXXXXXXxXxX$$$$$$$$X$$$XXX$;             ||
+||              x$X$$X$$XxxxxxxXXxxxxxX$XXXX$$$$$$$$$$$$$$$$$$$$$$$$$$$XXxXXxXXXxXXxX$$$$$XXX$X$XXX$;             ||
+||              x$X$$$$$XxXxXxXXXXxxXX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$xxxXxxxXXxxXxXXXX$$$$$$XXXXX$;             ||
+||              x$X$$$XxxxxxxxXxXX$$$$$$$$$$$$$$$$$$$$$$$XXxxXxxxxx$$XXxXxxxxxxxxxXxxXXX$$$XXXX$XXX$;             ||
+||              x$xXX$XxxxxXXxxxxxXXxX$$$$$$$$$$$$$$$$$$XxxxxxxxXxXXxxxxxXxxxXXXxxxXx$$$$X$XX$XXXXX$;             ||
+||              x$X$X$XxXxxxxxxxxXxXxxxX$$$$$$$$$$$$$$$XXxxXxxxxXxxxXxxxXxxxXXXXxxxxXXXXX$$$$$X$XXX$;             ||
+||              x$X$$$$$$$XXXXxxxxxxxxxx$$$$$$$$$$$$$$$XXxxxxXxxXxxxxxx+xxxxxxxxxxxxxXXX$$X$$$$$$$X$;             ||
+||              x$X$$$$$$$$$$XXxxxxxXxxX$$$$$$$$$$$$$$$$$XXxxXXXXxxxxXxxxxxxxxXxxxx+xxX$$$$$$$$$XX$$;             ||
+||              x$X$$$$$$$$$$$XxXxxxxx$$$$$$$$$$$$$$$$$$$$$XxxxxxXxxxxxxxxx+xxxxxxxxxxxXXX$$$$$$XX$$;             ||
+||              x$X$$$$$$$$$$$$$$XX$$$$$$$$$$$$$$$$$$$XXXxxXxxxxXxXxxxxxxxxxxxxxxxxxxxxxXxxXXX$$$$$$;             ||
+||              x$X$X$$$X$$$$$$$$$$$$$$$$$$$$$$$$$$$$xxXXxxxXxXxxxxXx+xxxxXXXXxxx+xxxxx+xxxxX$$$$$X$;             ||
+||              x$XX$X$$$$$$$$$$$$$$$$$$$$$$$$$$$$$XXxXxxxxxxXxXxXXxxXxxxXxxXXXXxxxxx+xxxxxxxXX$$$$$;             ||
+||              x$X$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$XXxxXxxXxxxxxXXXxXxxXxxxxxxxXx+x+x+xxxxxxxXXXXX$$;             ||
+||              x$XXXX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$XXXXXXXxxxXXXxxXxXXxxxxxxXxxxXxxxxxxxxxxxXXXXXX$;             ||
+||              x$x$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$XXXXXXXX$$$$XXxXxxxxXxxXxxxxxxXxXXXXxxXXX$XXXX$;             ||
+||              x$X$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$XxxXxxxxxxxxxxxxxxXxxxXxxXXXXXXXX$;             ||
+||              x$X$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$XXXXXXXxxxxxxxXXXXXXXXXXXXXXXX$$;             ||
+||              +$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$X$$$X$XXXXXX;             ||
+||                                                                                                                ||
+||================================================================================================================||

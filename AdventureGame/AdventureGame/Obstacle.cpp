@@ -54,6 +54,7 @@ void Obstacle::printName()
 void Obstacle::printDescription()
 {
 	cout << description << endl;
+	cout << "||================================================================================================================||" << endl;
 }
 
 string Obstacle::getRequiredItem()

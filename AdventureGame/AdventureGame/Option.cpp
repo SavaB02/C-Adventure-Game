@@ -46,7 +46,7 @@ Item Option::getOptionItem()
 	return optionItem;
 }
 
-Obstacle Option::getOptionObstacle()
+Obstacle& Option::getOptionObstacle()
 {
 	return optionObstacle;
 }

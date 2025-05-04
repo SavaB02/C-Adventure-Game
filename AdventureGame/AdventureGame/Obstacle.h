@@ -28,7 +28,7 @@ private:
     string description;
 
     /**
-    * @brief Path to the .txt file containing the obstacle's ASCII image.
+    * @brief Path to .txt file containing the obstacle's ASCII image.
     */
     string obsImage;
 

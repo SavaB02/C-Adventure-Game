@@ -1,0 +1,32 @@
+||================================================================================================================||
+||						   Blockage	                                                  ||
+||================================================================================================================||
+||&&$$$$XXXXXXXXXXXxxxxxxxxxxxXXXXxx+;::+$XxxxxxxxxxxXXXx++xxxx++xxxxxXXX$$$$$X$$$X:.........:;;........    .:xx;.||
+||;++xXX$$$$$$$$$$$$$$$XXXXXxXXxxXX$$X$XXXxXxxxxxXxxxxxxXxXXXX$X$$$$$$XXXxXxXXx+..:;;;;:;+xxxxxXxxx+xx.........xx+||
+||..:::;;++xxxXXXxxxxxXX$$$$$$$$$&$Xxx+++++++xxxxxxXXXX$XXXXXXXXx+x+XX$XXXX$XxxXxx+$xxxx+xxxxxxxX$$$X:..........:;||
+||...........:::;;++xXX$$$$$$$$Xxxxxx+xxxXXXxxXXXxxxxxxxxXXxxxXxxxxxxxxxxxxxXxxX$$$$xxxxxxxxX$&&&&&$$XX$$$$$XXXXXX||
+||;;..........:x$$$$$&&$XxxxxxxxxxXXxxxX$&&Xxxxxxxxxxx&&$$$&$$$XXXxxxXXxxxxxX$$$X$XXxxx+xxxxXXXXx+;;:........:....||
+||$$$x;+xX$&&$$$$$$XxxxXXXxxxXXxxxxXXXXX&&&Xxxxxxxxxxx$&&&&&$$XXXXXxxXxxxxX$$$$$$XXXXXXXxxxxxxxxxxxxxxXXx:......:+||
+||X$$$$$&&$$$XX$$$$&$$x++xxXxxxx+XXXXXxxx&&Xx+xxXXxxxxX&&&$XxxxxXxxxxxxXX$$$$$$$$&&&&$$$$X$$XXxxxxXXXxxXx:..:+xxxx||
+||&&&&&&&&&&&&&&&$$xxxxxxXXxxxX$$&&xxxxxxX$xxx+xx+x+x+x$XXxxXxx+xxxxxX$$$$$$$&&&&&&&$$$$$$$$$$$$$$$$$$$$X++xxxxxxx||
+||&&&&&&&&&&&&$XxxxxxxxXXxxxX$$$&&&$xXxxXXXxxxxxx+x+xxxxxxxxxxXXXXX$$&&&&&&&&&&&&&&&&$$XxxxxXxxxXXX$$$$$XXXxXXXXxx||
+||&&$$$$XXxx++xxxxXXXXXXXXXX$$&&&$$$XXXXXXxxxxxxxxxXxxxxxxXXXXXX$$$&&&&&&&&&&&&&&&$$$$$$$XXxXXxx+xxx+xxxx+++xx+xx$||
+||x+;:::;xxxxXXXXXxxxX$$X$$$&&$$$$$X$xXX$$XxxxxxxxxxxXxxXXXXX$&&&$&&&&&$$$$$$$$$$$$$$XX$$$$$XxxxxxxxxxxxxxxxxX$XxX||
+||;xXXxxXXX$Xxxxx++X$XX$$$$$$$$$XXXXXXxXX$$$xxxxxxXXXXXXXXX$&$$&&&&$$$$$$XXXXXxxxxxxXXXXXX$XXXXxxxxXxXxXxXX$XxXxxx||
+||xxxxxxxxxxxxxxX$$$$$$$$$XXXXxxxx++xxxxxx+xxxxxXXXXxxxXX$$&&&&&$$$$$XXxx+++;;;;+++++xxxxxXxxxxxxxXXxXXXXxxx+xxxX$||
+||xxxxx+xxxxxX&$$$&$$$Xx++++++++++xxxxxxxxxxxxxxx+xxxX$$$$&&&$$$$$Xx++;:::..:+XxXxxxx++++xxxxxxxxxxXXXxxXXX$&&&$XX||
+||xxxxxxxxXX$X$$$$$Xx+;;:::;++xxxxxxxxxxxxxxXXxxxxX$$$&&&&$$$$$XXx+;;;;++xxxxxxxxxxxx+;;+xxxxxxX$$XXX$$$$$$$XXXXXx||
+||+xx+x+X$$X$$$$$X+;::.:+xx+xxxXXxXxxxxxxXXxXXXXX$$$&&&&$$$$XXx++xxxxxxxxxxxxxxxxxxxxxxXXxx+x$$$&&&&&&&&$XxXxxxXXX||
+||+xxX$$$$$&$$Xx+;;+xxxx++xxxxxxxxxxxxXxXxxXXX$$X$xxXXXXXxXXXXx+xxxxxxxxxxxxXXxxxxxxxxxxxX$&&&&&&&&&&&&&$Xxx+xxxxx||
+||X$$$$$XX$$xxxxxxxxXXXx;;++++++++xX$xxxX$$&$XXXXXX$$$$XXXXXX$Xxx+xX$$xxxxxXxxxx+xxxXX$$&$$$&&&&&&&&&&&&&&$$XXxxxx||
+||$$$$Xxxxxxxxxxx+xx++xx+++++xxX$$XxXXX$&&$Xxxxx+xxX$$XXXXXXxXXXxXXxXXXXxxxxxxxxxXX$$$$$$&&&$$$$$XXXXXXX$$$&$$Xx++||
+||$Xxxxxxxx++xx+xxxxxxxxxX$$$$$XXx+X$$$&&&XxxxxxxXxx$&&&$$$XXxxxxxXxxXxxxx+xx+xX$$$X$$$$$$$$XXXxxxx++++xxxXX$xxxxx||
+||XxxxxxxxxxxXXxxxXXXX$$$&&&$Xx+xX$$&&&&&&$++xxxxxxxx+;;;+xxxxxxxXXxxxx++xxxX&$$$$&$$$$XXXXxxx++;;;;;;;;+++xxxxxxx||
+||xxxxxxXxXXXxxxxX$$&&&&&$XxxxxX$&&&&&&&&$$Xxxxxxxxxxxxxxx++++xxxx+xxxxxxX$$&$&&&$XXXXXXXxx+;::.......:;;+xXXxxxxx||
+||XXXXxxxxxxxXX$$$$&$$$XXxxXX&&&&&&&$$$XXxxxXxXxxxxxxxxxx+++;++++xx+xxX$&$$$&&&$$$$XXXx++;::...    ....;+xxxxxxXxx||
+||XxxXXxxX$$$$$&$&&&$XXXXX$&&&&&&$$Xxx+++++xxxXxxxxxxXXx++++++++++xX$$$$$$&$$$$$$XXx+;;:....     ....;xxxx+++xxXXx||
+||;+xxxXX$$&&$&&&$XXxxX$&&&&&&$Xx+;;;;;;;+x+xxxxx++++++xxx+++xxxX$$$$$$$$$$$$XXXx+;;:....     .....:xxxxx++++xxXxx||
+||X$$$$$$$&&&&$XxxxxX$&&&$&$x;:.....:;+xxxxxxxxxxxxxxx+xxxxXX$$$$$$$$$$$$XXXxx+;::....        ...:+xxxxxxXXXxx;;++||
+||$$$$$$$$$$XXXxXX$&&&$$$x:......:xXXxxxxxXxxxxxxXxxxxxxXX$$&$$&&$$$$$XXXXxx++;;::....     .....+xx+xxXxx++x++xxxx||
+||XXX$XXXXxxxXX$&&&&$X;......:+xxxxxxxxxxxxxxXXXxxXXXX$$$$$$$&&&$$$XXXxx+;;::::....     ......;xxXxxxx+xxxxxxxxxxx||
+||================================================================================================================||

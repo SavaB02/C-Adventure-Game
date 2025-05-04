@@ -140,51 +140,108 @@ bool Area::hasItems()	// Returns true if there are items, false if the vector is
 	return !items.empty(); 
 }
 
-void Area::exploreArea(Player& player)
+void Area::exploreArea(Player& player, Option& option)
 {
-	for (Obstacle& obstacle : obstacles) //iterates through each obstacle in the obstacles vector
-	{	
-		if (!obstacle.isSolved()) //if isSolved = false, then it shows that obstacle
-		{					
-			int choice = 0;
+	Obstacle& obstacle = option.getOptionObstacle();
 
-			while (!obstacle.isSolved()) //Loops until the obstacle is solved or player leaves
+	while (!obstacle.isSolved())
+	{
+		cout << "|| [1] Inspect                                                                                                    ||" << endl;
+		cout << "|| [2] Use Item                                                                                                   ||" << endl;
+		cout << "|| [3] Leave                                                                                                      ||" << endl;
+		cout << "||================================================================================================================||" << endl;
+		cout << ">>> ";
+
+		int choice;
+		cin >> choice;
+
+		if (cin.fail() || choice < 1 || choice > 3)
+		{
+			cout << "|| Invalid input. Press enter to try again." << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cin.get();
+			system("cls");
+			obstacle.printImage();
+			continue;
+		}
+
+		if (choice == 1)
+		{
+			system("cls");
+			obstacle.printImage();
+			cout << "|| ";
+			obstacle.printDescription();
+			cout << "|| Your Options are:                                                                                              ||" << endl;
+			cout << "||================================================================================================================||" << endl;
+		}
+		else if (choice == 2)
+		{
+			cout << "||======================================||" << endl;
+			cout << "||         Choose an item to use:" << "       ||" << endl;
+			cout << "||======================================||" << endl;
+			vector<Item>& inventory = player.getInventory();
+			for (int i = 0; i < inventory.size(); ++i)
 			{
-				cout << "Options: " << endl;
-				cout << "[1] Inspect" << endl;
-				cout << "[2] Use Item" << endl;
-				cout << "[3] Leave" << endl;
-
-				cin >> choice;
-
-
-				//if loop to validate that the input is an integer and is within valid range (1-3)
-				if (!(cin >> choice) or choice < 1 or choice > 3)
-				{
-					cout << "Invalid input. Please choose a valid option (1-3):" << endl;
-					cin.clear(); // Clear error flag if non-integer input
-					cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard bad input
-				}
-				else
-				{
-					if (choice == 1) 
-					{
-						obstacle.printName();
-						obstacle.printDescription();  // Show obstacle description again
-						continue;
-					}
-					else if (choice == 2) 
-					{
-						// Let the player use an item from the inventory
-						useItem(player, obstacle);
-					}
-					else if (choice == 3) 
-					{
-						cout << "Leaving the area..." << endl;
-						return;  // Go back to a previous menu or area
-					}
-				}
+				cout << "|| [" << i + 1 << "] " << inventory[i].getName() << endl;
 			}
+			cout << "||======================================||" << endl;
+
+			int itemChoice;
+			cout << "|| Enter your choice [1-" << inventory.size() << "]: ";
+			cin >> itemChoice;
+
+			if (itemChoice < 1 || itemChoice > inventory.size())
+			{
+				cout << "|| Wrong input. Press enter to continue ||" << endl;
+				cin.ignore();
+				cin.get();
+				system("cls");
+				obstacle.printImage();
+				continue;
+			}
+
+			Item selectedItem = inventory[itemChoice - 1];
+
+			// Check if item solves the obstacle
+			if (selectedItem.getName() == obstacle.getRequiredItem())
+			{
+				cout << "|| You use: " << selectedItem.getName() << "... - success!" << endl;
+				obstacle.solve();
+				option.solveInteracted(); // Mark the option as interacted
+				player.removeItem(selectedItem.getName());
+
+				if (obstacle.getType() == "item")
+				{
+					player.addItem(obstacle.getRewardItem());
+					cout << "|| You receive: " << obstacle.getRewardItem().getName() << endl;
+				}
+				else if (obstacle.getType() == "pathway")
+				{
+					obstacle.joinPathways();
+					cout << "|| A new path has opened!" << endl;
+				}
+
+				cout << "||======================================||" << endl;
+				cout << "|| Press enter to continue...           ||" << endl;
+				cin.ignore();
+				cin.get();
+				break;
+			}
+			else
+			{
+				cout << "|| This item doesn't seem to work...    ||" << endl;
+				cout << "|| Press enter to continue..." << endl;
+				cin.ignore();
+				cin.get();
+				system("cls");
+				obstacle.printImage();
+				continue;
+			}
+		}
+		else if (choice == 3)
+		{
+			return;
 		}
 	}
 }
@@ -331,11 +388,8 @@ void Area::displayOptions()
 		{
 			cout << "|| [" << i + 2 << "] " << options[i].getDescription() << endl;
 		}
-		
 	}
-
-
-	//some logic to output only those options that has hasInteracted as false
+	cout << "||================================================================================================================||" << endl;
 }
 
 int Area::getOptionSize()

@@ -21,8 +21,6 @@
 ||                                                 /     ###/                                       /                                   ||
 ||                                                                                                                                      ||
 ||--------------------------------------------------------------------------------------------------------------------------------------||
-||				Please, Fullscreen the game for better experience! (alt + enter)		           		||		
-||--------------------------------------------------------------------------------------------------------------------------------------||
 ||														           		||	
 ||	Fading Echoes is a text-based adventure focused on storytelling, world exploration, and puzzle-solving. You embark on a 	||
 ||	journey through	various locations, collecting items and using them to overcome obstacles. The core gameplay revolves 		||

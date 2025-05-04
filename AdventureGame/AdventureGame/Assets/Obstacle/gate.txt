@@ -1,0 +1,34 @@
+||================================================================================================================||
+||						   Golden Gate	                                                  ||
+||================================================================================================================||
+||                                  ;+;X++++++++++++++++++++++++x+++xxxx+xx+:.                                    ||
+||                                  ;+;XxxxxxxxxxxxxxxxxxxxxxxxxxxXXXXXXxxXX;.                                    ||
+||                                  ::+x++;;+++++++++++++++++++++++++++++;XXx.                                    ||
+||                                  :;x;;++;;;+;;;+;;;;+;;;+;;;;;+;;;;+++;+XX                                     ||
+||                             ;+x+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;xX+;:....:;xXXX                             ||
+||                      +++xXXXXxxxXXXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxXXXXXXX$$$XXXx                          ||
+||                      :;+xx+xxXXXXXXXxxxxxxxxxxxxxxxxxxxxxxxxxxxxxXXXXXXXX$$$$XXxxX                             ||
+||                       :+++XXXXXxXXXXXXXXXXXXXXXXXXXXXXX$XXXXXXXXXXXXXXXXXXXXXXXxX$X:                           ||
+||                        :++xx+XXXXXXX$XXXXXXX$$XXXXxxxxxxX$$$$$$$$$$$$$$$X$$XXxxXXX:                            ||
+||                          ;+xxxxxxXXxX$$$$$$XxX$$$X+XXXx+$$$$XX$$&$$$$XX$$xxX$$$Xx:                             ||
+||                           ;++xxxxxx+X$XXxXXX+X$X$x+XX$X+$$$XXX$$$XXXXxX$$$$$$XX+                               ||
+||                            :++++++++Xx++;+++x$x++++Xxxx+Xx++xXXxx+++xxX$XXXXXx;                                ||
+||                                   ;xxxxxxx++XxXx+++++++xXxx+xxxXxXx++x;.                                       ||
+||                              ;;:;;;;++;++++++++++++++++++++++++++++++++++;;;;                                  ||
+||                              +++x++xxxxxxxxxxxxXxxxxxx+xxxxxxxxxxxxxxxxxxXxx+                                  ||
+||                               ;+xxxxX$$XX$XX+X$$$XXXXXXXXX$XxxX$$XX$XXxX$$X+        	                          ||
+||                                 :+xX$+++;;:xx$+++:++;;+;:;:;x$X+x:;+;xX$X;                                     ||
+||                         ++++++++++;+x;;;;;;;+X+;++;;;;;+;+;;;x++;;;;+;+$$$$$$X$XXXXXX;                         ||
+||                     :+++;;;+++++++;+x++++++;;X$XXXXXXXXXXXXX++x++++++;+$$$$$$$$$$$$$$x                         ||
+||                     :;;;;;;;;;;;;+;xXxxxxxx+x$+.:::::.;.;:.;+XXxxxxxxxxXXXXXXXXXXXXXXx                         ||
+||                   x+++;;;;;+++++xX$$$Xxxxxx+x$+............:+XXXxxxxx+xXXxxxxxxxxxxxXXXX                       ||
+||                   :;;+xXXXXXXXXXXxx$$Xxxxxx+x$+::::::::::::;+XXXxxxx++XXxXXXXXXXXXXXx                          ||
+||                   .....+XXXxxXXX+.:X$Xxxxxx+x$+::;;;;;;;;::;+XXXxxxx++X;:+$XXXXXXX                             ||
+||                    ....;XXXXXXXX+::XXXxxxxx+x$+;;;;;;;+;;;;;+XXXxxxx++X;.xX$$$$$$$;                            ||
+||                    ....:xxx+++xx+::+Xxxxxxx++Xx;;++++++xx+++;+XXxxxxx++;:+XXXxxxXX;                            ||
+||                   .....:xxx++++x++;XX+++++++x$x;;;+;;;+x+++++XXx++++++X+++XXXxxxXX                             ||
+||                   ..:;:;++++++++;:+XX+;;;+;+X$+;;;;;::;;;;;;+XX+++++++x;;xXxxxxxx                              ||
+||                   ..;x+xxxxxxxxx;;xX$xxxxxxxX$+::::....::::;+XXXxxxxxxx;;+$XXxxxxxx;x                          ||
+||================================================================================================================||
+|| Your Options are:												  ||
+||================================================================================================================||
