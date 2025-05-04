@@ -27,7 +27,6 @@ string Area::getName()
 	return name;
 }
 
-
 void Area::setDescription(string new_description)
 {
 	description = new_description;
@@ -57,7 +56,6 @@ string Area::getOverview()
 {
 	return overview;
 }
-
 
 void Area::addPathway(Area& new_pathway)
 {
@@ -107,13 +105,15 @@ void Area::addObstacle(Obstacle i_obstacle)
 
 Obstacle& Area::getObstacle(string i_name)
 {
-	for (auto& obstacle : obstacles) {
+	for (auto& obstacle : obstacles) 
+	{
 		cout << obstacle.getName() << endl;
-		if (obstacle.getName() == i_name) {
+		if (obstacle.getName() == i_name) 
+		{
 			return obstacle;	//return the found obstacle
 		}
 	}
-	throw runtime_error("Obstacle not found"); // Throw an error if not found
+	throw runtime_error("Obstacle not found"); //error if not found
 }
 
 void Area::addItem(Item i_item)
@@ -123,19 +123,17 @@ void Area::addItem(Item i_item)
 
 void Area::removeItem(string i_name)
 {
-	auto it = remove_if(items.begin(), items.end(), [&](Item& item)
-		{
-			return item.getName() == i_name; //Match item name
-		});
-
-	//If item is found, remove it from the vector
-	if (it != items.end())
+	for (int i = 0; i < items.size(); i++)
 	{
-		items.erase(it, items.end());	//remove the matched item
+		if (items[i].getName() == i_name)
+		{
+			items.erase(items.begin() + i);
+			return;
+		}
 	}
 }
 
-bool Area::hasItems()	// Returns true if there are items, false if the vector is empty
+bool Area::hasItems()
 {
 	return !items.empty(); 
 }
@@ -203,18 +201,18 @@ void Area::exploreArea(Player& player, Option& option)
 
 			Item selectedItem = inventory[itemChoice - 1];
 
-			// Check if item solves the obstacle
+			//check if item solves the obstacle
 			if (selectedItem.getName() == obstacle.getRequiredItem())
 			{
 				cout << "|| You use: " << selectedItem.getName() << "... - success!" << endl;
 				obstacle.solve();
-				option.solveInteracted(); // Mark the option as interacted
+				option.solveInteracted(); //mark the option as interacted
 				player.removeItem(selectedItem.getName());
 
 				if (obstacle.getType() == "item")
 				{
-					player.addItem(obstacle.getRewardItem());
-					cout << "|| You receive: " << obstacle.getRewardItem().getName() << endl;
+					player.addItem(obstacle.getObstacleItem());
+					cout << "|| You receive: " << obstacle.getObstacleItem().getName() << endl;
 				}
 				else if (obstacle.getType() == "pathway")
 				{
@@ -248,7 +246,7 @@ void Area::exploreArea(Player& player, Option& option)
 
 bool Area::useItem(Player& player, Obstacle& obstacle)
 {
-	// Display the player's inventory
+	//display the player's inventory
 	cout << "Choose an item to use:" << endl;
 	for (int i = 0; i < player.getInventory().size(); ++i) 
 	{
@@ -263,10 +261,10 @@ bool Area::useItem(Player& player, Obstacle& obstacle)
 		cout << "Enter your choice [1-" << player.getInventory().size() << "]: ";
 		if (cin >> itemChoice) 
 		{
-			// Check if the choice is within the valid range
-			if (itemChoice >= 1 && itemChoice <= player.getInventory().size()) 
+			//checking if the choice is within the valid range
+			if (itemChoice >= 1 and itemChoice <= player.getInventory().size()) 
 			{
-				validInput = true; // Input is valid, exit loop
+				validInput = true; //input is valid, exit loop
 			}
 			else 
 			{
@@ -275,76 +273,49 @@ bool Area::useItem(Player& player, Obstacle& obstacle)
 		}
 		else 
 		{
-			// If input is not an integer (e.g., user enters a letter or symbol)
+			//if input is not an integer (e.g., user enters a letter or symbol)
 			cout << "Invalid input! Please enter a number between 1 and " << player.getInventory().size() << "." << endl;
 			cin.clear(); // Clear the error state
-			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore the rest of the invalid input
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); //ignore the rest of the invalid input
 		}
 	}
 
-	// Once we have a valid item choice, proceed with the item selection
-	Item selectedItem = player.getInventory()[itemChoice - 1]; // Store the selected item
+	Item selectedItem = player.getInventory()[itemChoice - 1]; //stores the selected item
 
-	// Check if this item solves the obstacle
+	//check if this item solves the obstacle
 	if (selectedItem.getName() == obstacle.getRequiredItem()) 
 	{
 		cout << "You used the " << selectedItem.getName() << " and solved the obstacle!" << endl;
-		obstacle.solve();  // Mark the obstacle as solved
-		player.removeItem(selectedItem.getName());  // Remove item from inventory
+		obstacle.solve();  //mark the obstacle as solved
+		player.removeItem(selectedItem.getName());  //remove item from inventory
 
 
-		if (obstacle.getType() == "pathway") {
+		if (obstacle.getType() == "pathway") 
+		{
 			cout << "A new pathway is unlocked!" << endl;
 			obstacle.joinPathways();
 		}
-		else if (obstacle.getType() == "item") {
-			player.addItem(obstacle.getRewardItem());
+		else if (obstacle.getType() == "item") 
+		{
+			player.addItem(obstacle.getObstacleItem());
 		}
-		else {
-			cout << "error." << endl;
+		else 
+		{
+			cout << "Error." << endl;
 		}
 		
-
-		
-
-
-		////USELESS
-		//// Check if the obstacle unlocks a new item
-		//string unlockableItemName = obstacle.getUnlockItemName();
-
-		////MB USELESS ALREADY
-		//if (!unlockableItemName.empty()) 
-		//{
-		//	string unlockableItemDescription = obstacle.getUnlockItemDescription();
-		//	// Add the unlocked item to the player's inventory
-		//	player.addItem(Item(unlockableItemName, unlockableItemDescription));
-		//	cout << "You unlocked a new item: " << unlockableItemName << "!" << endl;
-		//}
-
-		////ALSO USELESS
-		//// Check if the obstacle unlocks a new pathway
-		//if (obstacle.getUnlockPathway())
-		//{
-		//	// Unlock the new pathway
-		//	cout << "You unlocked a new path!" << endl;
-		//	obstacle.setUnlockPathway();
-		//}
-
-		// Add a pause before returning
-		cout << "Press any key to continue...";
+		cout << "Press enter to continue...";
 		cin.ignore();
 		cin.get();
 
-		// Exit function after solving the obstacle
 		return true;
-
 	}
 	else 
 	{
 		cout << "This item does not work on the obstacle." << endl;
-		cout << "Press any key to continue...";
+		cout << "Press enter to continue...";
 		cin.ignore();
-		cin.get();  // Wait for user input before exiting
+		cin.get();  
 		return false;
 	}
 }
@@ -395,15 +366,4 @@ void Area::displayOptions()
 int Area::getOptionSize()
 {
 	return options.size();
-}
-
-void Area::updateOption(string oldOptionDescription, Option newOption) 
-{
-	for (Option option : options) 
-	{
-		if (option.getDescription() == oldOptionDescription) // Find the matching option
-		{  
-			option = newOption;
-		}
-	}
 }

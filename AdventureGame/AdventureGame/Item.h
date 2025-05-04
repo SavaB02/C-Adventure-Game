@@ -57,6 +57,12 @@ public:
     string getDescription();
 
     /**
+    * @brief Retrieves the image path of the item.
+    * @return The item's image path.
+    */
+    string getImage();
+
+    /**
     * @brief Displays the image's ASCII image by printing the .txt file to the screen.
     */
     void printImage();

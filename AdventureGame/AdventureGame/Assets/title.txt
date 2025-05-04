@@ -28,7 +28,14 @@
 ||	of the narrative.											           		||		
 ||															            	||		
 ||--------------------------------------------------------------------------------------------------------------------------------------||
-||															           	||	
-||						Press Enter to start the game...					   	        ||	
+||																	||
+||	-It is advised that the player explores each area and inspect every option.							||
+||	-Please check your inventory at the start of game.										||
+||	-If after solving an obstacle it says that a new pathway is unlocked, simply go back to the global map.				||
 ||														           		||		
+||--------------------------------------------------------------------------------------------------------------------------------------||
+||																	||
+||	[1] Start a New Journey														||
+||	[2] Load the saved game														||
+||																	||
 ||======================================================================================================================================||

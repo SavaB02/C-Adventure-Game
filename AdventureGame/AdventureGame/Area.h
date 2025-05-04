@@ -63,7 +63,6 @@ private:
     */
     vector<Obstacle> obstacles;
 
-
     /**
     * @brief Vector of options present inside the area.
     */
@@ -251,8 +250,6 @@ public:
     * @return The size of options inside an area
     */
     int getOptionSize();
-
-    void updateOption(string oldOptionDescription, Option newOption);
 };
 
 

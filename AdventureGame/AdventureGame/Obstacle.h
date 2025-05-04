@@ -57,8 +57,19 @@ private:
     */
     bool unlockNewPathway = false;
 
+    /**
+    * @brief flag to indicate the type of the obstacle. Can be "pathway" or "item"
+    */
     string obstacleType;
+
+    /**
+    * @brief array that stores 2 areas
+    */
     Area* toJoin[2];
+
+    /**
+    * @brief item that obstacle gives after solving it
+    */
     Item obstacleItem;
 
 public:
@@ -68,8 +79,21 @@ public:
     * @param i_description Description of the obstacle.
     * @param i_obsImage Path to the .txt file of the obstacle's ASCII image.
     * @param i_requiredItem Name of the item required to solve the obstacle.
+    * @param i_obstacleType Flag to indicate the type of the obstacle. Can be "pathway" or "item"
+    * @param i_obstacleItem Item that obstacle gives after solving it
     */
     Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Item i_obstacleItem);
+
+    /**
+    * @brief Constructs an Obstacle object.
+    * @param i_name Name of the obstacle
+    * @param i_description Description of the obstacle.
+    * @param i_obsImage Path to the .txt file of the obstacle's ASCII image.
+    * @param i_requiredItem Name of the item required to solve the obstacle.
+    * @param i_obstacleType Flag to indicate the type of the obstacle. Can be "pathway" or "item"
+    * @param i_toJoin1 First area to join with the second
+    * @param i_toJoin2 Second area to join with the first
+    */
     Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Area* i_toJoin1, Area* i_toJoin2);
 
     /**
@@ -148,12 +172,19 @@ public:
     */
     bool getUnlockPathway();
 
-    //Joins pathways from toJoin array
+    /**
+    * @brief Joins pathways from toJoin array
+    */
     void joinPathways();
 
-    //returns obstacle type
+    /**
+    * @brief Returns obstacle type
+    * @return obstacle type
+    */
     string getType();
 
-    //returns obstacle's item (that it gives)
-    Item getRewardItem();
+    /**
+    * @brief Gives the item after solving an obstacle
+    */
+    Item getObstacleItem();
 };

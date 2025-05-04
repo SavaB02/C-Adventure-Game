@@ -27,12 +27,13 @@ void Player::addItem(Item item)
 void Player::removeItem(string itemName)
 {
 	for (auto it = inventory.begin(); it != inventory.end(); ++it) {
-		if (it->getName() == itemName) {
-			inventory.erase(it);  // Remove the item from the player's inventory
-			return;  // Exit after removing the item
+		if (it->getName() == itemName) 
+		{
+			inventory.erase(it);  //remove the item from the player's inventory
+			return;  //exit after removing the item
 		}
 	}
-	cout << "Item not found in inventory!" << endl;  // If the item was not found
+	cout << "Item not found in inventory!" << endl;  //if the item was not found
 }
 
 vector<Item>& Player::getInventory()

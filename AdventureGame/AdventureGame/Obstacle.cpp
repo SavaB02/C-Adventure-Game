@@ -35,11 +35,8 @@ Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, strin
 	toJoin[1] = i_toJoin2;
 }
 
-
 Obstacle::Obstacle()
-{
-	solved = false;
-}
+{}
 
 string Obstacle::getName()
 {
@@ -124,7 +121,7 @@ string Obstacle::getType()
 	return obstacleType;
 }
 
-Item Obstacle::getRewardItem()
+Item Obstacle::getObstacleItem()
 {
 	return obstacleItem;
 }

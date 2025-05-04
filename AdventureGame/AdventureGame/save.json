@@ -1,0 +1,47 @@
+{
+    "area": "The Grave",
+    "interactedOptions": [
+        {
+            "area": "The Peak",
+            "option": "Perceive the Truth"
+        }
+    ],
+    "inventory": [
+        {
+            "description": "A frayed letter that guides you toward the fading echoes of your legacy. \n|| Somewhere, your ancestor's grave waits - and with it, a silence only an offering can answer.",
+            "image": "Assets/Items/letter.txt",
+            "name": "Farewell Letter"
+        },
+        {
+            "description": "A carefully prepared set of tributes: \n|| Fragrant incense, a flask of sake, and modest ornaments. \n|| Meant not for the living, but for those who came before - \n|| a gesture of remembrance and respect.",
+            "image": "Assets/Items/offerings.txt",
+            "name": "Offerings"
+        },
+        {
+            "description": "The hardest step is the first - yet without it, no path will ever unfold",
+            "image": "Assets/Items/firstPage.txt",
+            "name": "First Page"
+        },
+        {
+            "description": "Strength lies within each of us - all it takes is the courage to uncover it.",
+            "image": "Assets/Items/secondPage.txt",
+            "name": "Second Page"
+        },
+        {
+            "description": "No storm lasts forever. In its wake, the lake remembers how to be still.",
+            "image": "Assets/Items/thirdImage.txt",
+            "name": "Third Page"
+        },
+        {
+            "description": "Even the greatest of things fall - and that, too, is part of their story.",
+            "image": "Assets/Items/fourthPage.txt",
+            "name": "Fourth Page"
+        }
+    ],
+    "solvedObstacles": [
+        {
+            "area": "The Peak",
+            "option": "Perceive the Truth"
+        }
+    ]
+}

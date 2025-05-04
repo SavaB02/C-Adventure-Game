@@ -5,18 +5,62 @@
 #include "Area.h"       //include area class
 #include "Player.h"     //include player class
 #include <fstream>      //file input and output
-#include <set>
+#include "json.hpp"     //include json library
 
+using json = nlohmann::json;
 using namespace std;
    
 
-//Functions used
-void showMap(Area* currentArea);
-int getUserInput(int min, int max);
-void enterInsideArea(Area* currentArea, Player& player);
-void openInventory(Area* currentArea, Player& player, bool isInside);
-void optionsHeader();                                   //Function to call option header
+//Functions in Main.cpp
 
+/**
+* @brief Displays the current area's ASCII image and presents with options
+* @param currentArea - area to take an image from (mainly currentArea)
+*/
+void showMap(Area* currentArea);
+
+/**
+* @brief Displays the current area's ASCII image and presents with options
+* @param currentArea - area to take an image from (mainly currentArea)
+*/
+int getUserInput(int min, int max);
+
+/**
+* @brief Displays the current area's ASCII image (inside of the area and presents with options
+* @param currentArea - area to take an image from (mainly currentArea)
+* @param player - the player of the game
+*/
+void enterInsideArea(Area* currentArea, Player& player);
+
+/**
+* @brief Opens player's inventory
+* @param currentArea - area to take an image from (mainly currentArea)
+* @param player - the player of the game
+* @param isInside - flag to check if the player is inside the area or on the global map
+*/
+void openInventory(Area* currentArea, Player& player, bool isInside);
+
+/**
+* @brief Saves the current state of the game
+* @param player - the player of the game
+* @param currentArea - area to take an image from (mainly currentArea)
+* @param allAreas - vector to store all areas in the game
+*/
+void saveGame(Player& player, Area* currentArea, vector<Area*>& allAreas);
+
+/**
+* @brief Loads the current state of the game
+* @param player - the player of the game
+* @param currentArea - area to take an image from (mainly currentArea)
+* @param allAreas - vector to store all areas in the game
+*/
+void loadGame(Player& player, Area*& currentArea, vector<Area*>& allAreas);
+
+/**
+* @brief Checks if the player has an item called "Wisdom"
+* @param player - the player of the game
+*/
+void checkForWisdom(Player& player);
 
 int main()
 {
@@ -32,24 +76,17 @@ int main()
     Area peak("The Peak", "Ascend the peak", "Assets/Map/map_peak.txt", "Assets/Area/area_peak.txt");
     Area grave("The Grave", "Make your way towards the Grave", "Assets/Map/map_grave.txt", "Assets/Area/area_grave.txt");
 
-    //Initialising the player and creating a pointer for the current area
-    Player player("Player");  
-    Area* currentArea = &gates;
-    bool isInside = true;           //a flag to keep track of current position in the world(inside the area or not)
-    int exploreInput = 0;
-
     //Adding an explore button description (to get inside the location)
     gates.setExplore("Circle around the gates");
     village.setExplore("Walk towards the village centre");
     forest.setExplore("Go inside the forest");
-    hut.setExplore("Step inside the hut");
+    hut.setExplore("Step towards the hut");
     bamboo.setExplore("Go inside the bamboo grove");
     castle.setExplore("Explore the ruins of the castle");
     temple.setExplore("Investigate the temple");
     lake.setExplore("Go around the lake");
     peak.setExplore("Look around the peak");
     grave.setExplore("Get near the grave");
-
 
     //Creating initial pathways between the areas
     gates.addPathway(village);
@@ -67,12 +104,17 @@ int main()
     bamboo.addPathway(castle);
     castle.addPathway(bamboo);
 
-    //A set to track which pathways are unlocked
-    set<string> unlockedPathways; 
+    Player player("Player");            //Initialising the player; 
+    Area* currentArea = &gates;         //a pointer for the current area the player is in
+    bool isInside = true;               //a flag to check if the player is inside the area or on the global map (used for inventory)
+    int exploreInput = 0;               //player's input
+    vector<Area*> allAreas = { &gates, &village, &forest, &hut, &bamboo, &temple, &castle, &lake, &peak, &grave }; //vector of all the areas in the game. Used for save/load
 
-    //Initial player item
+    //Initial player items
     player.addItem(Item("Farewell Letter", "A frayed letter that guides you toward the fading echoes of your legacy. \n|| Somewhere, your ancestor's grave waits - and with it, a silence only an offering can answer.", "Assets/Items/letter.txt"));
-    player.addItem(Item("Offerings", "A carefully prepared set of tributes: \n|| Fragrant incense, a flask of sake, and modest ornaments. \n|| Meant not for the living, but for those who came before - n\|| a gesture of remembrance and respect.", "Assets/Items/offerings.txt"));
+    player.addItem(Item("Offerings", "A carefully prepared set of tributes: \n|| Fragrant incense, a flask of sake, and modest ornaments. \n|| Meant not for the living, but for those who came before - \n|| a gesture of remembrance and respect.", "Assets/Items/offerings.txt"));
+
+    //Setting up Option choises for the player. Can be a text, an item (gives item on choosing), and an obstacle(that either gives an item or unlocks a pathway between the areas
 
     //Gates Options
     gates.addOption(Option("Read the sign", "text", "Welcome to a forgotten land ravaged by time"));
@@ -81,106 +123,115 @@ int main()
 
     //Village options
     village.addOption(Option("Read the note by the house", "text", "Saw a noble wandering by the gates - sword gleaming like moonlight. \n|| No idea what he was after, but I swear if I can get my hands on that sword..."));
-    village.addOption(Option("Search the nobleman's house", "obstacle", "You get near the entrance", Obstacle("Locked Door", "The iron lock on the door looks functional — perhaps it still opens with the right key.", "Assets/Obstacle/door.txt", "Iron Key", "item", Item("Weathered Katana", "An old katana with a dulled blade. Time have scarred its surface, yet a quiet strength still lingers within.", "Assets/Items/katana.txt"))));
+    village.addOption(Option("Search the nobleman's house", "obstacle", "You get near the entrance", Obstacle("Locked Door", "The iron lock on the door looks functional - perhaps it still opens with the right key.", "Assets/Obstacle/door.txt", "Iron Key", "item", Item("Weathered Katana", "An old katana with a dulled blade. Time have scarred its surface, yet a quiet strength still lingers within.", "Assets/Items/katana.txt"))));
     village.addOption(Option("Get near the bridge", "obstacle", "You are near the broken bridge", Obstacle("Broken Bridge", "The bridge is broken, worn down by time. A rope might help you cross.", "Assets/Obstacle/bridge.txt", "Rope", "pathway", &village, &temple)));
 
     //Forest options
-    forest.addOption(Option("Obscure Pathway", "obstacle", "A long and twisted path", Obstacle("Pathway", "A long and twisted path, you will get lost without a map", "Assets/Obstacles/pathway.txt", "Shrine Map", "item", Item("Golden Key", "Gold - a material used by monks and nobles", "Assets/Items/goldenKey.txt"))));
-    forest.addOption(Option("Inpect the thickets", "item", "In the thicket of branches and vines you find an old shovel.", Item("Old Shovel", "Very rusty, but should be fine to dig a hole or two.", "Assets/Items/shovel.txt")));
+    forest.addOption(Option("Obscure Pathway", "obstacle", "A long and twisted path", Obstacle("Pathway", "A long and twisted path, you will get lost without a map", "Assets/Obstacle/pathway.txt", "Shrine Map", "item", Item("Golden Key", "Gold - a material used by monks and nobles", "Assets/Items/goldenKey.txt"))));
+    forest.addOption(Option("Inspect the thickets", "item", "In the thicket of branches and vines you find an old shovel.", Item("Old Shovel", "Very rusty, but should be fine to dig a hole or two.", "Assets/Items/shovel.txt")));
     forest.addOption(Option("Examine the vines", "obstacle", "You encounted vines", Obstacle("Vines", "Twisting vines and overgrown brush bar the way. Cutting through is the only option", "Assets/Obstacle/vines.txt", "Weathered Katana", "pathway", &forest, &hut)));
 
     //Hut options
     hut.addOption(Option("Search the hut", "obstacle", "Go inside the hut", Obstacle("Old chest", "A battered chest, worn and cracked, but still sturdy enough to hold whatever lies within.", "Assets/Obstacle/chest.txt", "Rusty Key", "item", Item("Rope", "A long rope with a hook attached", "Assets/Items/rope.txt"))));
-    hut.addOption(Option("Look around the hut", "item", "On the table you find a note", Item("Second Page", "Strength lies within each of us — all it takes is the courage to uncover it.", "Assets/Items/secondPage.txt")));
+    hut.addOption(Option("Check the hut surroundings", "item", "On the table you find a note", Item("Second Page", "Strength lies within each of us - all it takes is the courage to uncover it.", "Assets/Items/secondPage.txt")));
     hut.addOption(Option("Check the tree hollow", "item", "You reach inside and find a key", Item("Rusty Key", "Old but should still be functioning.", "Assets/Items/rustyKey.txt")));
 
     //Temple options
-    temple.addOption(Option("Read monk's texts", "text", "Among the pages, you find a faded note: 'One of the monk's favorite places to meditate was a quiet shrine hidden deep within the forest."));
-    temple.addOption(Option("Reach the temple's window", "obstacle", "You try to climb the temple", Obstacle("Window", "Above the temple’s first roof, you notice a narrow window tucked just beneath the eaves. Shame it is too high up.", "Assets/Obstacle/window.txt", "Ladder", "item", Item("Shrine Map", "A map, depicting the path towards the shrine inside the forest.", "Assets/Items/map.txt"))));
-    temple.addOption(Option("Get near the golden gate", "obstacle", "You reached the golden gate", Obstacle("Gate", "Golden patterns shimmer across the gates, timeworn yet majestic. At their center, a keyhole shaped for a large key catches your eye.", "Assets/Obstacle/gate.txt", "Golden Key", "pathway", &temple, &bamboo)));
+    temple.addOption(Option("Read monk's texts", "text", "Among the pages, you find a faded note: 'One of the monk's favorite places to meditate\n|| was a quiet shrine hidden deep within the forest."));
+    temple.addOption(Option("Reach the temple's window", "obstacle", "You try to climb the temple", Obstacle("Window", "Above the temple's first roof, you notice a narrow window \n|| tucked just beneath the eaves. Shame it is too high up.", "Assets/Obstacle/window.txt", "Ladder", "item", Item("Shrine Map", "A map, depicting the path towards the shrine inside the forest.", "Assets/Items/map.txt"))));
+    temple.addOption(Option("Get near the golden gate", "obstacle", "You reached the golden gate", Obstacle("Gate", "Golden patterns shimmer across the gates, timeworn yet majestic. \n|| At their center, a keyhole shaped for a large key catches your eye.", "Assets/Obstacle/gate.txt", "Golden Key", "pathway", &temple, &bamboo)));
 
     //Lake options
-    lake.addOption(Option("Check out the boat", "item", "Inside the boat you find a note.", Item("Third page", "No storm lasts forever. In its wake, the lake remembers how to be still.", "Assets/Items/thirdImage.txt")));
+    lake.addOption(Option("Check out the boat", "item", "Inside the boat you find a note.", Item("Third Page", "No storm lasts forever. In its wake, the lake remembers how to be still.", "Assets/Items/thirdPage.txt")));
     lake.addOption(Option("Sail to the small island", "item", "On the island you find nothing but ladder.", Item("Ladder", "Made of wood, it's fragile but can still be used to climb somewhere.", "Assets/Items/ladder.txt")));
-    lake.addOption(Option("Meditate", "text", "You sit down and close your eyes. Soothing waves whisper against the shore as the sun glitters across the lake — a perfect moment for stillness."));
+    lake.addOption(Option("Meditate", "text", "You sit down and close your eyes. Soothing waves whisper against the shore as the sun \n|| glitters across the lake - a perfect moment for stillness."));
 
     //Bamboo Grove options
     bamboo.addOption(Option("Inspect a passage", "obstacle", "A stiff path that leads towards the mountain.", Obstacle("Passage", "A passage looks too stiff. Without a proper equipment you won't be able to climb.", "Assets/Obstacle/passage.txt", "Climbing Equipment", "pathway", &bamboo, &peak)));
     bamboo.addOption(Option("Get near the altar", "item", "You spot an altar on your way. Next to it lies an axe.", Item("Well-worn Axe", "Old but reliable. Its edge has seen better days, but it still cuts true.", "Assets/Items/axe.txt")));
 
     //Castle options
-    castle.addOption(Option("Take a look at the ruins", "text", "The ruined castle stands in solemn silence — once grand, now fragile beneath the weight of time."));
-    castle.addOption(Option("Look around the garden area", "item", "On a meditating spot you locate a note.", Item("Fourth page", "Even the greatest of things fall — and that, too, is part of their story.", "Assets/Items/fourthPage.txt")));
-    castle.addOption(Option("Examine the blockage", "obstacle", "You get near ruined barracks", Obstacle("Blockage", "You’re met with a heap of broken wood where a passage once stood. If you had something, that could smash through.", "Assets/Obstacle/blockage.txt", "Well-worn Axe", "item", Item("Climbing Equipment", "Essential tools for scaling heights. Thankfully, they're still in good condition.", "Assets/Items/equipment.txt"))));
+    castle.addOption(Option("Take a look at the ruins", "text", "The ruined castle stands in solemn silence - once grand, now fragile beneath the weight of time."));
+    castle.addOption(Option("Look around the garden area", "item", "On a meditating spot you locate a note.", Item("Fourth Page", "Even the greatest of things fall - and that, too, is part of their story.", "Assets/Items/fourthPage.txt")));
+    castle.addOption(Option("Examine the blockage", "obstacle", "You get near ruined barracks", Obstacle("Blockage", "You’re met with a heap of broken wood where a passage once stood.\n|| If only you had something, that could smash through.", "Assets/Obstacle/blockage.txt", "Well-worn Axe", "item", Item("Climbing Equipment", "Essential tools for scaling heights. Thankfully, they're still in good condition.", "Assets/Items/equipment.txt"))));
 
     //Peak options
-    peak.addOption(Option("Collect a note", "item", "You spot a weathered note, held in place by a few small rocks.", Item("Fifth page", "You reached the summit not to conquer it, but to understand the path you endured.", "Assets/Items/fifthPage.txt")));
-    peak.addOption(Option("Meditate", "text", "You’ve reached the summit, yet something stirs within — doubt, perhaps.\n|| Was this the goal, or just a resting place before a higher climb you’ve yet to see?"));
+    peak.addOption(Option("Collect a note", "item", "You spot a weathered note, held in place by a few small rocks.", Item("Fifth Page", "You reached the summit not to conquer it, but to understand the path you endured.", "Assets/Items/fifthPage.txt")));
+    peak.addOption(Option("Meditate", "text", "You’ve reached the summit, yet something stirs within - doubt, perhaps.\n|| Was this the goal, or just a resting place before a higher climb you've yet to see?"));
     peak.addOption(Option("Perceive the Truth", "obstacle", "Find the hidden.", Obstacle("Truth", "Only the wise recognize what others overlook \n|| - and wisdom often hides in words left behind.", "Assets/Obstacle/truth.txt", "Wisdom", "pathway", &peak, &grave)));
 
     //Grave options
-    grave.addOption(Option("Meditate", "text", "You kneel beside the grave, the wind still, the world quiet.\n|| In this silence, every step, every doubt, every scar you've carried settles into place.\n|| This is not just an end — \n|| it is the shape of everything you've become."));
-    grave.addOption(Option("Offer tribute", "obstacle", "You sit down by the grave", Obstacle("Tribute", "You've reached your destination. It's time to lay down your offerings.", "Assets/Obstacle/tribute.txt", "Offerings", "item", Item("Fading tome", "This tome contains the shape of your path — the echoes of your footsteps, the weight of your knowledge, and the truths you chose to carry.", "Assets/Items/tome.txt"))));
+    grave.addOption(Option("Meditate", "text", "You kneel beside the grave, the wind still, the world quiet.\n|| In this silence, every step, every doubt, every scar you've carried settles into place.\n|| This is not just an end - \n|| it is the shape of everything you've become."));
+    grave.addOption(Option("Offer tribute", "obstacle", "You sit down by the grave", Obstacle("Tribute", "You've reached your destination. It's time to lay down your offerings.", "Assets/Obstacle/tribute.txt", "Offerings", "item", Item("Fading Tome", "This tome contains the shape of your path - the echoes of your footsteps,\n|| the weight of your knowledge, and the truths you chose to carry.", "Assets/Items/tome.txt"))));
 
     //Main Game Logic
-        
-
-    cout << "||---------------------------------------------------------------------------||" << endl;
-    cout << "||      Please, Fullscreen the game for better experience!(alt + enter)	     ||" << endl;
-    cout << "||                         Press enter to continue	                     ||" << endl;
-    cout << "||---------------------------------------------------------------------------||" << endl;
+    cout << "||-----------------------------------------------------------------------------------------||" << endl;
+    cout << "||      Please, Fullscreen or Maximaze the game for better experience!(alt + enter)	   ||" << endl;
+    cout << "||                               Press enter to continue	                           ||" << endl;
+    cout << "||-----------------------------------------------------------------------------------------||" << endl;
     cin.ignore();
     system("cls");
 
-        ifstream file("Assets/title.txt");
-        if (!file) {
-            cout << "Error opening file: " << "title.txt" << endl;
-        }
-        string line;
-        while (getline(file, line))
+    //printing title screen
+    ifstream file("Assets/title.txt");
+    if (!file)
+    {
+        cout << "Error opening file: " << "title.txt" << endl;
+    }
+    string line;
+    while (getline(file, line))
+    {
+        cout << line << endl;
+    }
+    file.close();
+
+    int startChoice = getUserInput(1, 2);
+
+    if (startChoice == 2)
+    {
+        loadGame(player, currentArea, allAreas);    //loads the save file
+        player.addItem(Item("Wisdom", "You found all the pages of your lost legacy. Wisdom flows through you.", "Assets/Items/wisdom.txt"));
+        checkForWisdom(player);
+    }
+    system("cls");
+
+
+    while (true)
+    {
+        checkForWisdom(player);
+        showMap(currentArea);
+        int pathCount = currentArea->getPathways().size();  //stores the size of all the pathways in the area
+        int totalOptions = pathCount + 5;                   //stores a value of all the pathways in the area and adds 5 (options)
+        int userInput = getUserInput(1, totalOptions);
+
+        if (userInput == 1)
         {
-            cout << line << endl;
+            enterInsideArea(currentArea, player);
         }
-        cin.ignore();
-
-        //logic to choose to start new game or load the save
-
-
-        while (true)
+        else if (userInput == 2)
         {
-            if (!player.hasItem("Wisdom"))
-            {
-                if (player.hasItem("First Page") and player.hasItem("Second Page") and player.hasItem("Third Page") and player.hasItem("Fourth Page") and player.hasItem("Fifth Page"))
-                {
-                    player.addItem(Item("Wisdom", "You found all the pages of your lost legacy. Wisdom flows through you.", "Assets/Items/wisdom.txt"));
-                    cout << "=== Wisdom becomes a part of you.... ===" << endl;
-                }
-            }
-            
-            showMap(currentArea);
-            int userInput = getUserInput(1, currentArea->getPathways().size() + 2);
-            if (userInput == 1)
-            {
-                enterInsideArea(currentArea, player);
-;
-            }
-            else if (userInput == 2)
-            {
-                openInventory(currentArea, player, isInside);
-            }
-
-            //Logic to save/load (options 3/4)
-
-            //Logic to exit the game (option 5)
-
-
-            else if (userInput > 2)
-            {
-                currentArea = currentArea->getPathways()[userInput - 3];
-            }
+            openInventory(currentArea, player, isInside);
         }
+        else if (userInput >= 3 and userInput <= pathCount + 2)
+        {
+            currentArea = currentArea->getPathways()[userInput - 3];
+        }
+        else if (userInput == pathCount + 3)
+        {
+            saveGame(player, currentArea, allAreas);
+        }
+        else if (userInput == pathCount + 4)
+        {
+            loadGame(player, currentArea, allAreas);
+        }   
+        else if (userInput == pathCount + 5)
+        {
+            cout << "Thank you for playing. See you next time!" << endl;
+            break;
+        }
+        
+    }       
 }
-
 
 void showMap(Area* currentArea)
 {
@@ -198,7 +249,16 @@ void showMap(Area* currentArea)
     {
         cout << "|| [" << i + 3 << "]" << " " << currentArea->getPathways()[i]->getOverview() << endl;
     }
-    cout << "||================================================================================================================||" << endl;
+    cout << "||======================================||" << endl;
+    //option to save the game
+    cout << "|| [" << currentArea->getPathways().size() + 3 << "] Save Game" << endl;
+
+    //option to load the game
+    cout << "|| [" << currentArea->getPathways().size() + 4 << "] Load Game" << endl;
+
+    //option to quit the game
+    cout << "|| [" << currentArea->getPathways().size() + 5 << "] Exit Game" << endl;
+    cout << "||======================================||" << endl;
 }
 
 void enterInsideArea(Area* currentArea, Player& player)
@@ -236,13 +296,12 @@ void enterInsideArea(Area* currentArea, Player& player)
                 return;
             }
 
-
             if (currentArea->getOption(exploreInput-2).getOptionType() == "text") 
             {
                 cout << "|| ";
                 cout << currentArea->getOption(exploreInput-2).getOptionText() << endl;
                 cout << "||" << endl;
-                cout << "|| Press any key to continue..." << endl;
+                cout << "|| Press any enter to continue..." << endl;
                 cout << "||================================================================================================================||" << endl;
                 cin.ignore();
                 cin.get();
@@ -257,7 +316,7 @@ void enterInsideArea(Area* currentArea, Player& player)
                 player.addItem(currentArea->getOption(exploreInput - 2).getOptionItem());
 
                 cout << "|| " << endl;
-                cout << "|| A new item was added to your inventory. Press any key to continue..." << endl;
+                cout << "|| A new item was added to your inventory. Press enter to continue..." << endl;
                 cout << "||================================================================================================================||" << endl;
                 cin.ignore();
                 cin.get();
@@ -277,34 +336,26 @@ void enterInsideArea(Area* currentArea, Player& player)
     }
 }
 
-void openInventory(Area* currentArea,Player& player, bool isInside)
+void openInventory(Area* currentArea, Player& player, bool isInside)
 {
     cout << "||======================================||" << endl;
-    cout << "||            Your inventory    " << "        ||" << endl;
+    cout << "||            Your inventory            ||" << endl;
     cout << "||======================================||" << endl;
-    // if inventory is empty
-    if (player.getInventory().empty()) 
+    cout << "|| [1] Go back" << endl;
+
+    int index = 2;      //index start from 2 — items begin from option
+    for (auto& item : player.getInventory())
     {
-        cout << "Your inventory is empty." << endl;
+        cout << "|| [" << index << "] " << item.getName() << endl;  //iterating through each item
+        ++index;
     }
-    else 
-    {
-        // Loop through the inventory and display items
-        for (auto& item : player.getInventory()) 
-        {
-            cout << "|| [" << &item - &player.getInventory()[0] + 1 << "] " << item.getName() << endl;
-        }
-    }
-    cout << "|| [" << player.getInventory().size() + 1 << "]" << " Go back" << endl;
+
     cout << "||======================================||" << endl;
 
     int choice = getUserInput(1, player.getInventory().size() + 1);
-
-    if (choice == player.getInventory().size() + 1) 
+    if (choice == 1)
     {
-        // Go back to the previous area
-        system("cls");  // Clear the screen
-
+        system("cls");
         if (isInside)
         {
             showMap(currentArea);
@@ -314,23 +365,41 @@ void openInventory(Area* currentArea,Player& player, bool isInside)
             enterInsideArea(currentArea, player);
         }
     }
-    else 
-    {
-        Item selectedItem = player.getInventory()[choice - 1];
 
-        // Display the item description
+    else
+    {
+        Item selectedItem = player.getInventory()[choice - 2];
+
+        //show item info
         system("cls");
         selectedItem.printImage();
-
         cout << "|| Description: " << selectedItem.getDescription() << endl;
         cout << "||================================================================================================================||" << endl;
         cout << "|| [1] Go back" << endl;
-        int backChoice = getUserInput(1, 1);
 
+        int backChoice = getUserInput(1, 1);
         if (backChoice == 1)
         {
-            system("cls");
+            //check for Fading Tome — if present, show credits and exit
+            if (selectedItem.getName() == "Fading Tome")
+            {
+                system("cls");
+                cout << "||=====================================================================================||" << endl;
+                cout << "||                          Congratulations, you’ve finished the game!                 ||" << endl;
+                cout << "||=====================================================================================||" << endl;
+                cout << "||                                                                                     ||" << endl;
+                cout << "||               Your journey through fading echoes has come to an end.                ||" << endl;
+                cout << "||      The spirits rest, the past is honored, and your legacy has been fulfilled.     ||" << endl;
+                cout << "||                                                                                     ||" << endl;
+                cout << "||                       Thank you for playing. Farewell, wanderer.                    ||" << endl;
+                cout << "||                                                                                     ||" << endl;
+                cout << "||=====================================================================================||" << endl;
+                cin.ignore();
+                cin.get();
+                exit(0); //exit the game
+            }
 
+            system("cls");
             if (isInside)
             {
                 showMap(currentArea);
@@ -343,7 +412,6 @@ void openInventory(Area* currentArea,Player& player, bool isInside)
     }
 }
 
-
 int getUserInput(int min, int max) 
 {
     int userInput;
@@ -351,7 +419,7 @@ int getUserInput(int min, int max)
     {
         cout << ">>> ";
 
-        // Check if the input is an integer
+        //check if the input is an integer
         if (cin >> userInput) 
         {
             if (userInput >= min && userInput <= max) 
@@ -365,17 +433,185 @@ int getUserInput(int min, int max)
         }
         else 
         {
-            // If input is not an integer, clear the error and ignore the rest of the line
+            //if input is not an integer, clear the error and ignore the rest of the line
             cout << "Invalid input. Please enter a number." << endl;
-            cin.clear(); // Clear the error flag
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore invalid input
+            cin.clear(); //clear the error flag
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); //ignore invalid input
         }
     }
 }
 
-void optionsHeader()    //Function to call optionHeader
+
+void saveGame(Player& player, Area* currentArea, vector<Area*>& allAreas)
 {
-    cout << "|==========================================|" << endl;
-    cout << "|            Your options are:" << "             |" << endl;
-    cout << "|==========================================|" << endl;
+    //saving the game state to a JSON file
+    json saveData;
+    saveData["area"] = currentArea->getName();
+    json inventoryArray;
+
+    //saving inventory
+    for (Item& item : player.getInventory())        //iterating through the player's inventory and copying each item to a save file
+    {
+        json itemJson;
+        itemJson["name"] = item.getName();
+        itemJson["description"] = item.getDescription();
+        itemJson["image"] = item.getImage();
+        inventoryArray.push_back(itemJson);
+    }
+
+    saveData["inventory"] = inventoryArray;
+
+    //saving all interacted options
+    json interactedArray;
+    for (Area* area : allAreas)                //iterating through each area in the allAreas vector and copying options that have been interacted to a save file
+    {
+        for (Option& opt : area->getOptions()) 
+        {
+            if (opt.getHasInteracted()) 
+            {
+                json interacted;
+                interacted["area"] = area->getName();
+                interacted["option"] = opt.getDescription();
+                interactedArray.push_back(interacted);
+            }
+        }
+    }
+    saveData["interactedOptions"] = interactedArray;
+
+    //saving all solved obstacles
+    json solvedObstaclesArray;
+    for (Area* area : allAreas)                 //iterating through each area in the allAreas vector, then through each option that is an obstacle and have been solved to copy to a save file
+    {
+        for (Option& opt : area->getOptions())  
+        {
+            if (opt.getOptionType() == "obstacle") 
+            {
+                Obstacle obs = opt.getOptionObstacle();
+                if (obs.isSolved()) 
+                {
+                    json solved;
+                    solved["area"] = area->getName();
+                    solved["option"] = opt.getDescription();
+                    solvedObstaclesArray.push_back(solved);
+                }
+            }
+        }
+    }
+    saveData["solvedObstacles"] = solvedObstaclesArray;
+
+    ofstream file("save.json");     //creating a save file
+    if (file.is_open()) 
+    {
+        file << saveData.dump(4);   //writing all the saved date to the save file
+        file.close();
+        cout << "Game saved successfully!\n";
+        cin.ignore();
+        cin.get();
+    }
+    else 
+    {
+        cerr << "Failed to save the game.\n";
+        cin.ignore();
+        cin.get();
+    }
+}
+
+//loading the game state from a JSON save file
+void loadGame(Player& player, Area*& currentArea, vector<Area*>& allAreas)
+{
+    ifstream file("save.json"); //getting the save file
+    if (!file.is_open()) {
+        cerr << "Failed to open save file.\n";
+        cin.ignore();
+        cin.get();
+        return;
+    }
+
+    json saveData;
+    file >> saveData;   //loading all the saved data to a saveData variable
+    file.close();
+
+    //loading current area
+    string areaName = saveData["area"];
+    for (Area* area : allAreas)         //checking for a matching name and and making that a current area
+    {
+        if (area->getName() == areaName) 
+        {
+            currentArea = area;
+            break;
+        }
+    }
+
+    //loading inventory
+    player.getInventory().clear();
+    for (json itemData : saveData["inventory"])
+    {
+        string name = itemData["name"];
+        string desc = itemData["description"];
+        string image = itemData["image"];
+        player.addItem(Item(name, desc, image));        //adding all the saved items back to player's inventory
+    }
+
+    //loading interacted options
+    for (json entry : saveData["interactedOptions"]) 
+    {
+        string entryArea = entry["area"];
+        string optionDesc = entry["option"];
+
+        for (Area* area : allAreas) 
+        {
+            if (area->getName() == entryArea) 
+            {
+                for (Option& opt : area->getOptions()) 
+                {
+                    if (opt.getDescription() == optionDesc) //checking for a matching description and rendering that option as interacted
+                    {
+                        opt.solveInteracted();
+                    }
+                }
+            }
+        }
+    }
+    
+    //load solved obstacles
+    for (json solvedEntry : saveData["solvedObstacles"]) 
+    {
+        string areaName = solvedEntry["area"];
+        string optionDesc = solvedEntry["option"];
+
+        for (Area* area : allAreas) 
+        {
+            if (area->getName() == areaName) 
+            {
+                for (Option& opt : area->getOptions()) 
+                {
+                    if (opt.getDescription() == optionDesc and opt.getOptionType() == "obstacle")   //checking for an obstacle type of the option and rendering it as solved
+                    {
+                        opt.getOptionObstacle().solve();
+                        opt.solveInteracted();
+                    }
+                }
+            }
+        }
+    }
+
+    cout << "Game loaded successfully!\n";
+    cin.ignore();
+    cin.get();
+}
+
+void checkForWisdom(Player& player) 
+{
+    if (!player.hasItem("Wisdom")) 
+    {
+        if (player.hasItem("First Page") and
+            player.hasItem("Second Page") and
+            player.hasItem("Third Page") and
+            player.hasItem("Fourth Page") and
+            player.hasItem("Fifth Page"))
+        {
+            player.addItem(Item("Wisdom", "You found all the pages of your lost legacy. Wisdom flows through you.", "Assets/Items/wisdom.txt"));
+            cout << "=== Wisdom becomes a part of you.... ===" << endl;
+        }
+    }
 }
