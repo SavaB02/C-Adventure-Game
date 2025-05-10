@@ -7,10 +7,6 @@
 #include <fstream>      //file input and output
 #include "json.hpp"     //include json library
 
-using json = nlohmann::json;
-using namespace std;
-   
-
 //Functions in Main.cpp
 
 /**
@@ -46,7 +42,7 @@ void openInventory(Area* currentArea, Player& player, bool isInside);
 * @param currentArea - area to take an image from (mainly currentArea)
 * @param allAreas - vector to store all areas in the game
 */
-void saveGame(Player& player, Area* currentArea, vector<Area*>& allAreas);
+void saveGame(Player& player, Area* currentArea, std::vector<Area*>& allAreas);
 
 /**
 * @brief Loads the current state of the game
@@ -54,7 +50,7 @@ void saveGame(Player& player, Area* currentArea, vector<Area*>& allAreas);
 * @param currentArea - area to take an image from (mainly currentArea)
 * @param allAreas - vector to store all areas in the game
 */
-void loadGame(Player& player, Area*& currentArea, vector<Area*>& allAreas);
+void loadGame(Player& player, Area*& currentArea, std::vector<Area*>& allAreas);
 
 /**
 * @brief Checks if the player has an item called "Wisdom"
@@ -108,7 +104,7 @@ int main()
     Area* currentArea = &gates;         //a pointer for the current area the player is in
     bool isInside = true;               //a flag to check if the player is inside the area or on the global map (used for inventory)
     int exploreInput = 0;               //player's input
-    vector<Area*> allAreas = { &gates, &village, &forest, &hut, &bamboo, &temple, &castle, &lake, &peak, &grave }; //vector of all the areas in the game. Used for save/load
+    std::vector<Area*> allAreas = { &gates, &village, &forest, &hut, &bamboo, &temple, &castle, &lake, &peak, &grave }; //vector of all the areas in the game. Used for save/load
 
     //Initial player items
     player.addItem(Item("Farewell Letter", "A frayed letter that guides you toward the fading echoes of your legacy. \n|| Somewhere, your ancestor's grave waits - and with it, a silence only an offering can answer.", "Assets/Items/letter.txt"));
@@ -123,7 +119,7 @@ int main()
 
     //Village options
     village.addOption(Option("Read the note by the house", "text", "Saw a noble wandering by the gates - sword gleaming like moonlight. \n|| No idea what he was after, but I swear if I can get my hands on that sword..."));
-    village.addOption(Option("Search the nobleman's house", "obstacle", "You get near the entrance", Obstacle("Locked Door", "The iron lock on the door looks functional - perhaps it still opens with the right key.", "Assets/Obstacle/door.txt", "Iron Key", "item", Item("Weathered Katana", "An old katana with a dulled blade. Time have scarred its surface, yet a quiet strength still lingers within.", "Assets/Items/katana.txt"))));
+    village.addOption(Option("Search the nobleman's house", "obstacle", "You get near the entrance", Obstacle("Locked Door", "The iron lock on the door looks functional - perhaps it still opens with the right key.", "Assets/Obstacle/door.txt", "Iron Key", "item", Item("Weathered Katana", "An old katana with a dulled blade. Time have scarred its surface,\n|| yet a quiet strength still lingers within.", "Assets/Items/katana.txt"))));
     village.addOption(Option("Get near the bridge", "obstacle", "You are near the broken bridge", Obstacle("Broken Bridge", "The bridge is broken, worn down by time. A rope might help you cross.", "Assets/Obstacle/bridge.txt", "Rope", "pathway", &village, &temple)));
 
     //Forest options
@@ -132,8 +128,8 @@ int main()
     forest.addOption(Option("Examine the vines", "obstacle", "You encounted vines", Obstacle("Vines", "Twisting vines and overgrown brush bar the way. Cutting through is the only option", "Assets/Obstacle/vines.txt", "Weathered Katana", "pathway", &forest, &hut)));
 
     //Hut options
-    hut.addOption(Option("Search the hut", "obstacle", "Go inside the hut", Obstacle("Old chest", "A battered chest, worn and cracked, but still sturdy enough to hold whatever lies within.", "Assets/Obstacle/chest.txt", "Rusty Key", "item", Item("Rope", "A long rope with a hook attached", "Assets/Items/rope.txt"))));
-    hut.addOption(Option("Check the hut surroundings", "item", "On the table you find a note", Item("Second Page", "Strength lies within each of us - all it takes is the courage to uncover it.", "Assets/Items/secondPage.txt")));
+    hut.addOption(Option("Search the hut's storage", "obstacle", "Go inside the hut", Obstacle("Old chest", "A battered chest, worn and cracked, but still sturdy enough to hold whatever lies within.", "Assets/Obstacle/chest.txt", "Rusty Key", "item", Item("Rope", "A long rope with a hook attached", "Assets/Items/rope.txt"))));
+    hut.addOption(Option("Check the hut's kitchen", "item", "On the table you find a note", Item("Second Page", "Strength lies within each of us - all it takes is the courage to uncover it.", "Assets/Items/secondPage.txt")));
     hut.addOption(Option("Check the tree hollow", "item", "You reach inside and find a key", Item("Rusty Key", "Old but should still be functioning.", "Assets/Items/rustyKey.txt")));
 
     //Temple options
@@ -165,23 +161,23 @@ int main()
     grave.addOption(Option("Offer tribute", "obstacle", "You sit down by the grave", Obstacle("Tribute", "You've reached your destination. It's time to lay down your offerings.", "Assets/Obstacle/tribute.txt", "Offerings", "item", Item("Fading Tome", "This tome contains the shape of your path - the echoes of your footsteps,\n|| the weight of your knowledge, and the truths you chose to carry.", "Assets/Items/tome.txt"))));
 
     //Main Game Logic
-    cout << "||-----------------------------------------------------------------------------------------||" << endl;
-    cout << "||      Please, Fullscreen or Maximaze the game for better experience!(alt + enter)	   ||" << endl;
-    cout << "||                               Press enter to continue	                           ||" << endl;
-    cout << "||-----------------------------------------------------------------------------------------||" << endl;
-    cin.ignore();
+    std::cout << "||-----------------------------------------------------------------------------------------||" << std::endl;
+    std::cout << "||      Please, Fullscreen or Maximaze the game for better experience!(alt + enter)	   ||" << std::endl;
+    std::cout << "||                               Press enter to continue	                           ||" << std::endl;
+    std::cout << "||-----------------------------------------------------------------------------------------||" << std::endl;
+    std::cin.ignore();
     system("cls");
 
     //printing title screen
-    ifstream file("Assets/title.txt");
+    std::ifstream file("Assets/title.txt");
     if (!file)
     {
-        cout << "Error opening file: " << "title.txt" << endl;
+        std::cout << "Error opening file: " << "title.txt" << std::endl;
     }
-    string line;
+    std::string line;
     while (getline(file, line))
     {
-        cout << line << endl;
+        std::cout << line << std::endl;
     }
     file.close();
 
@@ -190,7 +186,6 @@ int main()
     if (startChoice == 2)
     {
         loadGame(player, currentArea, allAreas);    //loads the save file
-        player.addItem(Item("Wisdom", "You found all the pages of your lost legacy. Wisdom flows through you.", "Assets/Items/wisdom.txt"));
         checkForWisdom(player);
     }
     system("cls");
@@ -226,7 +221,7 @@ int main()
         }   
         else if (userInput == pathCount + 5)
         {
-            cout << "Thank you for playing. See you next time!" << endl;
+            std::cout << "Thank you for playing. See you next time!" << std::endl;
             break;
         }
         
@@ -239,26 +234,26 @@ void showMap(Area* currentArea)
     currentArea->printMap();
 
     //First option of each area is to go inside that area
-    cout << "|| [" << 1 << "]" << " " << currentArea->getExplore() << endl;
+    std::cout << "|| [" << 1 << "]" << " " << currentArea->getExplore() << std::endl;
 
     //Second option of each area is to open the inventory
-    cout << "|| [" << 2 << "]" << " Open Inventory" << endl;
+    std::cout << "|| [" << 2 << "]" << " Open Inventory" << std::endl;
 
     //for loop to create pathways options (3 - pathways vector size)
     for (int i = 0; i < currentArea->getPathways().size(); i++)
     {
-        cout << "|| [" << i + 3 << "]" << " " << currentArea->getPathways()[i]->getOverview() << endl;
+        std::cout << "|| [" << i + 3 << "]" << " " << currentArea->getPathways()[i]->getOverview() << std::endl;
     }
-    cout << "||======================================||" << endl;
+    std::cout << "||======================================||" << std::endl;
     //option to save the game
-    cout << "|| [" << currentArea->getPathways().size() + 3 << "] Save Game" << endl;
+    std::cout << "|| [" << currentArea->getPathways().size() + 3 << "] Save Game" << std::endl;
 
     //option to load the game
-    cout << "|| [" << currentArea->getPathways().size() + 4 << "] Load Game" << endl;
+    std::cout << "|| [" << currentArea->getPathways().size() + 4 << "] Load Game" << std::endl;
 
     //option to quit the game
-    cout << "|| [" << currentArea->getPathways().size() + 5 << "] Exit Game" << endl;
-    cout << "||======================================||" << endl;
+    std::cout << "|| [" << currentArea->getPathways().size() + 5 << "] Exit Game" << std::endl;
+    std::cout << "||======================================||" << std::endl;
 }
 
 void enterInsideArea(Area* currentArea, Player& player)
@@ -268,10 +263,10 @@ void enterInsideArea(Area* currentArea, Player& player)
     {
         system("cls");
         currentArea->printInside();
-        cout << "|| [" << 1 << "]" << " Go back to the global map" << endl;
-        cout << "|| [" << 2 << "]" << " Explore the area" << endl;
-        cout << "|| [" << 3 << "]" << " Open inventory" << endl;
-        cout << "||================================================================================================================||" << endl;
+        std::cout << "|| [" << 1 << "]" << " Go back to the global map" << std::endl;
+        std::cout << "|| [" << 2 << "]" << " Explore the area" << std::endl;
+        std::cout << "|| [" << 3 << "]" << " Open inventory" << std::endl;
+        std::cout << "||================================================================================================================||" << std::endl;
 
         int userInput = getUserInput(1, 3);
 
@@ -298,28 +293,28 @@ void enterInsideArea(Area* currentArea, Player& player)
 
             if (currentArea->getOption(exploreInput-2).getOptionType() == "text") 
             {
-                cout << "|| ";
-                cout << currentArea->getOption(exploreInput-2).getOptionText() << endl;
-                cout << "||" << endl;
-                cout << "|| Press any enter to continue..." << endl;
-                cout << "||================================================================================================================||" << endl;
-                cin.ignore();
-                cin.get();
+                std::cout << "|| ";
+                std::cout << currentArea->getOption(exploreInput-2).getOptionText() << std::endl;
+                std::cout << "||" << std::endl;
+                std::cout << "|| Press any enter to continue..." << std::endl;
+                std::cout << "||================================================================================================================||" << std::endl;
+                std::cin.ignore();
+                std::cin.get();
             }
 
             else if (currentArea->getOption(exploreInput - 2).getOptionType() == "item" and currentArea->getOption(exploreInput - 2).getHasInteracted() == false)
             {
                 currentArea->getOption(exploreInput - 2).solveInteracted();
 
-                cout << "|| ";
-                cout << currentArea->getOption(exploreInput - 2).getOptionText() << endl;
+                std::cout << "|| ";
+                std::cout << currentArea->getOption(exploreInput - 2).getOptionText() << std::endl;
                 player.addItem(currentArea->getOption(exploreInput - 2).getOptionItem());
 
-                cout << "|| " << endl;
-                cout << "|| A new item was added to your inventory. Press enter to continue..." << endl;
-                cout << "||================================================================================================================||" << endl;
-                cin.ignore();
-                cin.get();
+                std::cout << "|| " << std::endl;
+                std::cout << "|| A new item was added to your inventory. Press enter to continue..." << std::endl;
+                std::cout << "||================================================================================================================||" << std::endl;
+                std::cin.ignore();
+                std::cin.get();
             }    
 
             else if (currentArea->getOption(exploreInput - 2).getOptionType() == "obstacle" and !currentArea->getOption(exploreInput - 2).getHasInteracted())
@@ -338,19 +333,28 @@ void enterInsideArea(Area* currentArea, Player& player)
 
 void openInventory(Area* currentArea, Player& player, bool isInside)
 {
-    cout << "||======================================||" << endl;
-    cout << "||            Your inventory            ||" << endl;
-    cout << "||======================================||" << endl;
-    cout << "|| [1] Go back" << endl;
+    checkForWisdom(player);
+    if (player.hasItem("Fading Tome"))
+    {
+        player.removeItem("First Page");
+        player.removeItem("Second Page");
+        player.removeItem("Third Page");
+        player.removeItem("Fourth Page");
+        player.removeItem("Fifth Page");
+    }
+    std::cout << "||======================================||" << std::endl;
+    std::cout << "||            Your inventory            ||" << std::endl;
+    std::cout << "||======================================||" << std::endl;
+    std::cout << "|| [1] Go back" << std::endl;
 
     int index = 2;      //index start from 2 — items begin from option
     for (auto& item : player.getInventory())
     {
-        cout << "|| [" << index << "] " << item.getName() << endl;  //iterating through each item
+        std::cout << "|| [" << index << "] " << item.getName() << std::endl;  //iterating through each item
         ++index;
     }
 
-    cout << "||======================================||" << endl;
+    std::cout << "||======================================||" << std::endl;
 
     int choice = getUserInput(1, player.getInventory().size() + 1);
     if (choice == 1)
@@ -373,9 +377,9 @@ void openInventory(Area* currentArea, Player& player, bool isInside)
         //show item info
         system("cls");
         selectedItem.printImage();
-        cout << "|| Description: " << selectedItem.getDescription() << endl;
-        cout << "||================================================================================================================||" << endl;
-        cout << "|| [1] Go back" << endl;
+        std::cout << "|| Description: " << selectedItem.getDescription() << std::endl;
+        std::cout << "||================================================================================================================||" << std::endl;
+        std::cout << "|| [1] Go back" << std::endl;
 
         int backChoice = getUserInput(1, 1);
         if (backChoice == 1)
@@ -384,18 +388,18 @@ void openInventory(Area* currentArea, Player& player, bool isInside)
             if (selectedItem.getName() == "Fading Tome")
             {
                 system("cls");
-                cout << "||=====================================================================================||" << endl;
-                cout << "||                          Congratulations, you’ve finished the game!                 ||" << endl;
-                cout << "||=====================================================================================||" << endl;
-                cout << "||                                                                                     ||" << endl;
-                cout << "||               Your journey through fading echoes has come to an end.                ||" << endl;
-                cout << "||      The spirits rest, the past is honored, and your legacy has been fulfilled.     ||" << endl;
-                cout << "||                                                                                     ||" << endl;
-                cout << "||                       Thank you for playing. Farewell, wanderer.                    ||" << endl;
-                cout << "||                                                                                     ||" << endl;
-                cout << "||=====================================================================================||" << endl;
-                cin.ignore();
-                cin.get();
+                std::cout << "||=====================================================================================||" << std::endl;
+                std::cout << "||                          Congratulations, you’ve finished the game!                 ||" << std::endl;
+                std::cout << "||=====================================================================================||" << std::endl;
+                std::cout << "||                                                                                     ||" << std::endl;
+                std::cout << "||               Your journey through fading echoes has come to an end.                ||" << std::endl;
+                std::cout << "||      The spirits rest, the past is honored, and your legacy has been fulfilled.     ||" << std::endl;
+                std::cout << "||                                                                                     ||" << std::endl;
+                std::cout << "||                       Thank you for playing. Farewell, wanderer.                    ||" << std::endl;
+                std::cout << "||                                                                                     ||" << std::endl;
+                std::cout << "||=====================================================================================||" << std::endl;
+                std::cin.ignore();
+                std::cin.get();
                 exit(0); //exit the game
             }
 
@@ -417,10 +421,10 @@ int getUserInput(int min, int max)
     int userInput;
     while (true) 
     {
-        cout << ">>> ";
+        std::cout << ">>> ";
 
         //check if the input is an integer
-        if (cin >> userInput) 
+        if (std::cin >> userInput)
         {
             if (userInput >= min && userInput <= max) 
             {
@@ -428,31 +432,31 @@ int getUserInput(int min, int max)
             }
             else 
             {
-                cout << "|| Input is out of range. Try again." << endl;
+                std::cout << "|| Input is out of range. Try again." << std::endl;
             }
         }
         else 
         {
             //if input is not an integer, clear the error and ignore the rest of the line
-            cout << "Invalid input. Please enter a number." << endl;
-            cin.clear(); //clear the error flag
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); //ignore invalid input
+            std::cout << "Invalid input. Please enter a number." << std::endl;
+            std::cin.clear(); //clear the error flag
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //ignore invalid input
         }
     }
 }
 
 
-void saveGame(Player& player, Area* currentArea, vector<Area*>& allAreas)
+void saveGame(Player& player, Area* currentArea, std::vector<Area*>& allAreas)
 {
     //saving the game state to a JSON file
-    json saveData;
+    nlohmann::json saveData;
     saveData["area"] = currentArea->getName();
-    json inventoryArray;
+    nlohmann::json inventoryArray;
 
     //saving inventory
     for (Item& item : player.getInventory())        //iterating through the player's inventory and copying each item to a save file
     {
-        json itemJson;
+        nlohmann::json itemJson;
         itemJson["name"] = item.getName();
         itemJson["description"] = item.getDescription();
         itemJson["image"] = item.getImage();
@@ -462,14 +466,14 @@ void saveGame(Player& player, Area* currentArea, vector<Area*>& allAreas)
     saveData["inventory"] = inventoryArray;
 
     //saving all interacted options
-    json interactedArray;
+    nlohmann::json interactedArray;
     for (Area* area : allAreas)                //iterating through each area in the allAreas vector and copying options that have been interacted to a save file
     {
         for (Option& opt : area->getOptions()) 
         {
             if (opt.getHasInteracted()) 
             {
-                json interacted;
+                nlohmann::json interacted;
                 interacted["area"] = area->getName();
                 interacted["option"] = opt.getDescription();
                 interactedArray.push_back(interacted);
@@ -479,7 +483,7 @@ void saveGame(Player& player, Area* currentArea, vector<Area*>& allAreas)
     saveData["interactedOptions"] = interactedArray;
 
     //saving all solved obstacles
-    json solvedObstaclesArray;
+    nlohmann::json solvedObstaclesArray;
     for (Area* area : allAreas)                 //iterating through each area in the allAreas vector, then through each option that is an obstacle and have been solved to copy to a save file
     {
         for (Option& opt : area->getOptions())  
@@ -489,7 +493,7 @@ void saveGame(Player& player, Area* currentArea, vector<Area*>& allAreas)
                 Obstacle obs = opt.getOptionObstacle();
                 if (obs.isSolved()) 
                 {
-                    json solved;
+                    nlohmann::json solved;
                     solved["area"] = area->getName();
                     solved["option"] = opt.getDescription();
                     solvedObstaclesArray.push_back(solved);
@@ -499,40 +503,54 @@ void saveGame(Player& player, Area* currentArea, vector<Area*>& allAreas)
     }
     saveData["solvedObstacles"] = solvedObstaclesArray;
 
-    ofstream file("save.json");     //creating a save file
+    //saving all unlocked pathways
+    nlohmann::json openPathwaysArray;
+    for (Area* area : allAreas) 
+    {
+        for (Area* connectedArea : area->getPathways()) 
+        {
+            nlohmann::json path;
+            path["from"] = area->getName();
+            path["to"] = connectedArea->getName();
+            openPathwaysArray.push_back(path);
+        }
+    }
+    saveData["openPathways"] = openPathwaysArray;
+
+    std::ofstream file("save.json");     //creating a save file
     if (file.is_open()) 
     {
         file << saveData.dump(4);   //writing all the saved date to the save file
         file.close();
-        cout << "Game saved successfully!\n";
-        cin.ignore();
-        cin.get();
+        std::cout << "Game saved successfully!\n";
+        std::cin.ignore();
+        std::cin.get();
     }
     else 
     {
-        cerr << "Failed to save the game.\n";
-        cin.ignore();
-        cin.get();
+        std::cerr << "Failed to save the game.\n";
+        std::cin.ignore();
+        std::cin.get();
     }
 }
 
 //loading the game state from a JSON save file
-void loadGame(Player& player, Area*& currentArea, vector<Area*>& allAreas)
+void loadGame(Player& player, Area*& currentArea, std::vector<Area*>& allAreas)
 {
-    ifstream file("save.json"); //getting the save file
+    std::ifstream file("save.json"); //getting the save file
     if (!file.is_open()) {
-        cerr << "Failed to open save file.\n";
-        cin.ignore();
-        cin.get();
+        std::cerr << "Failed to open save file.\n";
+        std::cin.ignore();
+        std::cin.get();
         return;
     }
 
-    json saveData;
+    nlohmann::json saveData;
     file >> saveData;   //loading all the saved data to a saveData variable
     file.close();
 
     //loading current area
-    string areaName = saveData["area"];
+    std::string areaName = saveData["area"];
     for (Area* area : allAreas)         //checking for a matching name and and making that a current area
     {
         if (area->getName() == areaName) 
@@ -544,40 +562,42 @@ void loadGame(Player& player, Area*& currentArea, vector<Area*>& allAreas)
 
     //loading inventory
     player.getInventory().clear();
-    for (json itemData : saveData["inventory"])
+    for (nlohmann::json itemData : saveData["inventory"])
     {
-        string name = itemData["name"];
-        string desc = itemData["description"];
-        string image = itemData["image"];
+        std::string name = itemData["name"];
+        std::string desc = itemData["description"];
+        std::string image = itemData["image"];
         player.addItem(Item(name, desc, image));        //adding all the saved items back to player's inventory
     }
 
     //loading interacted options
-    for (json entry : saveData["interactedOptions"]) 
+    for (nlohmann::json entry : saveData["interactedOptions"])
     {
-        string entryArea = entry["area"];
-        string optionDesc = entry["option"];
+        std::string entryArea = entry["area"];
+        std::string optionDesc = entry["option"];
 
-        for (Area* area : allAreas) 
+        for (Area* area : allAreas)
         {
-            if (area->getName() == entryArea) 
+            if (area->getName() == entryArea)
             {
-                for (Option& opt : area->getOptions()) 
+                try
                 {
-                    if (opt.getDescription() == optionDesc) //checking for a matching description and rendering that option as interacted
-                    {
-                        opt.solveInteracted();
-                    }
+                    Option& opt = area->getOption(optionDesc);  //checking for a matching description and rendering that option as interacted
+                    opt.solveInteracted();
+                }
+                catch (const std::runtime_error& e)
+                {
+                    std::cerr << "Warning: " << e.what() << std::endl;
                 }
             }
         }
     }
     
-    //load solved obstacles
-    for (json solvedEntry : saveData["solvedObstacles"]) 
+    //loading solved obstacles
+    for (nlohmann::json solvedEntry : saveData["solvedObstacles"])
     {
-        string areaName = solvedEntry["area"];
-        string optionDesc = solvedEntry["option"];
+        std::string areaName = solvedEntry["area"];
+        std::string optionDesc = solvedEntry["option"];
 
         for (Area* area : allAreas) 
         {
@@ -595,9 +615,47 @@ void loadGame(Player& player, Area*& currentArea, vector<Area*>& allAreas)
         }
     }
 
-    cout << "Game loaded successfully!\n";
-    cin.ignore();
-    cin.get();
+    std::cout << "Game loaded successfully!\n";
+    std::cin.ignore();
+    std::cin.get();
+
+    
+    //loading unlocked pathways
+    if (saveData.contains("openPathways")) 
+    {
+        for (nlohmann::json path : saveData["openPathways"])
+        {
+            std::string from = path["from"];
+            std::string to = path["to"];
+            Area* fromArea = nullptr;
+            Area* toArea = nullptr;
+
+            for (Area* area : allAreas) 
+            {
+                if (area->getName() == from) fromArea = area;
+                if (area->getName() == to) toArea = area;
+            }
+
+            if (fromArea and toArea) 
+            {
+                //checking if pathway already exists
+                bool alreadyExists = false;
+                for (Area* existing : fromArea->getPathways()) 
+                {
+                    if (existing->getName() == toArea->getName()) 
+                    {
+                        alreadyExists = true;
+                        break;
+                    }
+                }
+
+                if (!alreadyExists) 
+                {
+                    fromArea->addPathway(*toArea);
+                }
+            }
+        }
+    }
 }
 
 void checkForWisdom(Player& player) 
@@ -611,7 +669,7 @@ void checkForWisdom(Player& player)
             player.hasItem("Fifth Page"))
         {
             player.addItem(Item("Wisdom", "You found all the pages of your lost legacy. Wisdom flows through you.", "Assets/Items/wisdom.txt"));
-            cout << "=== Wisdom becomes a part of you.... ===" << endl;
+            std::cout << "=== Wisdom becomes a part of you.... ===" << std::endl;
         }
     }
 }

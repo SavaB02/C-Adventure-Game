@@ -1,6 +1,6 @@
 #include "Option.h"
 
-Option::Option(string i_description, string i_optionType, string i_optionText)
+Option::Option(std::string i_description, std::string i_optionType, std::string i_optionText)
 {
 	description = i_description;
 	optionType = i_optionType;
@@ -8,7 +8,7 @@ Option::Option(string i_description, string i_optionType, string i_optionText)
 	hasInteracted = false;
 }
 
-Option::Option(string i_description, string i_optionType, string i_optionText, Item i_optionItem) //constructor for option with item
+Option::Option(std::string i_description, std::string i_optionType, std::string i_optionText, Item i_optionItem) //constructor for option with item
 {
 	description = i_description;
 	optionType = i_optionType;
@@ -17,7 +17,7 @@ Option::Option(string i_description, string i_optionType, string i_optionText, I
 	hasInteracted = false;
 }
 
-Option::Option(string i_description, string i_optionType, string i_optionText, Obstacle i_optionObstacle)
+Option::Option(std::string i_description, std::string i_optionType, std::string i_optionText, Obstacle i_optionObstacle)
 {
 	description = i_description;
 	optionType = i_optionType;
@@ -26,17 +26,17 @@ Option::Option(string i_description, string i_optionType, string i_optionText, O
 	hasInteracted = false;
 }
 
-string Option::getDescription()
+std::string Option::getDescription()
 {
 	return description;
 }
 
-string Option::getOptionType()
+std::string Option::getOptionType()
 {
 	return optionType;
 }
 
-string Option::getOptionText()
+std::string Option::getOptionText()
 {
 	return optionText;
 }

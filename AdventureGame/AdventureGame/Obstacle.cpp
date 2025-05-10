@@ -4,7 +4,7 @@
 
 
 //Obstacle that gives an item after solving
-Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Item i_obstacleItem)
+Obstacle::Obstacle(std::string i_name, std::string i_description, std::string i_obsImage, std::string i_requiredItem, std::string i_obstacleType, Item i_obstacleItem)
 {
 	name = i_name;
 	description = i_description;
@@ -19,7 +19,7 @@ Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, strin
 }
 
 //Obstacle that opens a path after solving
-Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Area* i_toJoin1, Area* i_toJoin2)
+Obstacle::Obstacle(std::string i_name, std::string i_description, std::string i_obsImage, std::string i_requiredItem, std::string i_obstacleType, Area* i_toJoin1, Area* i_toJoin2)
 {
 	name = i_name;
 	description = i_description;
@@ -38,23 +38,23 @@ Obstacle::Obstacle(string i_name, string i_description, string i_obsImage, strin
 Obstacle::Obstacle()
 {}
 
-string Obstacle::getName()
+std::string Obstacle::getName()
 {
 	return name;
 }
 
 void Obstacle::printName()
 {
-	cout << name << endl;
+	std::cout << name << std::endl;
 }
 
 void Obstacle::printDescription()
 {
-	cout << description << endl;
-	cout << "||================================================================================================================||" << endl;
+	std::cout << description << std::endl;
+	std::cout << "||================================================================================================================||" << std::endl;
 }
 
-string Obstacle::getRequiredItem()
+std::string Obstacle::getRequiredItem()
 {
 	return requiredItem;
 }
@@ -62,14 +62,14 @@ string Obstacle::getRequiredItem()
 
 void Obstacle::printImage()
 {
-	ifstream file(obsImage);
+	std::ifstream file(obsImage);
 	if (!file) {
-		cout << "Error opening file: " << obsImage << endl;
+		std::cout << "Error opening file: " << obsImage << std::endl;
 	}
-	string line;
+	std::string line;
 	while (getline(file, line))
 	{
-		cout << line << endl;
+		std::cout << line << std::endl;
 	}
 }
 
@@ -84,18 +84,18 @@ void Obstacle::solve()
 }
 
 
-void Obstacle::setUnlockItem(string i_unlockItemName, string i_unlockItemDescription)
+void Obstacle::setUnlockItem(std::string i_unlockItemName, std::string i_unlockItemDescription)
 {
 	unlockItemName = i_unlockItemName;
 	unlockItemDescription = i_unlockItemDescription;
 }
 
-string Obstacle::getUnlockItemName()
+std::string Obstacle::getUnlockItemName()
 {
 	return unlockItemName;
 }
 
-string Obstacle::getUnlockItemDescription()
+std::string Obstacle::getUnlockItemDescription()
 {
 	return unlockItemDescription;
 }
@@ -116,7 +116,7 @@ void Obstacle::joinPathways()
 	toJoin[1]->addPathway(*(toJoin[0]));
 }
 
-string Obstacle::getType()
+std::string Obstacle::getType()
 {
 	return obstacleType;
 }

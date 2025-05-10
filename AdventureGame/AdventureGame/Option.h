@@ -3,7 +3,7 @@
 #include "Item.h"
 #include "Obstacle.h"
 
-using namespace std;
+
 
 /**
 * @class Option
@@ -19,15 +19,15 @@ private:
 	/**
 	* @brief Description of the option.
 	*/
-	string description;
+	std::string description;
 	/**
 	* @brief Option type. Can be 'text', 'item' or 'obstacle'.
 	*/
-	string optionType = "";
+	std::string optionType = "";
 	/**
 	* @brief Option text that appears when interacting with an option.
 	*/
-	string optionText;
+	std::string optionText;
 	/**
 	* @brief Item that an option gives on interacting
 	*/
@@ -42,27 +42,27 @@ private:
 	bool hasInteracted;			
 
 public:
-	Option(string i_description, string i_optionType, string i_optionText);
-	Option(string i_description, string i_optionType, string i_optionText, Item i_optionItem);
-	Option(string i_description, string i_optionType, string i_optionText, Obstacle i_optionObstacle);
+	Option(std::string i_description, std::string i_optionType, std::string i_optionText);
+	Option(std::string i_description, std::string i_optionType, std::string i_optionText, Item i_optionItem);
+	Option(std::string i_description, std::string i_optionType, std::string i_optionText, Obstacle i_optionObstacle);
 
 	/**
 	* @brief Retrieves the description of the option.
 	* @return The option's description.
 	*/
-	string getDescription();
+	std::string getDescription();
 
 	/**
 	* @brief Retrieves the type of the option.
 	* @return The option's type.
 	*/
-	string getOptionType();
+	std::string getOptionType();
 
 	/**
 	* @brief Retrieves the option text.
 	* @return The option's text.
 	*/
-	string getOptionText();
+	std::string getOptionText();
 
 	/**
 	* @brief Retrieves the item that the option gives.

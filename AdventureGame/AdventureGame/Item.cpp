@@ -1,13 +1,11 @@
 #include "Item.h"
 
-using namespace std;
-
 Item::Item()
 {
 }
 
 // Constructor
-Item::Item(string i_name, string i_description, string i_itemImage)
+Item::Item(std::string i_name, std::string i_description, std::string i_itemImage)
 {
     name = i_name;
     description = i_description;
@@ -15,32 +13,32 @@ Item::Item(string i_name, string i_description, string i_itemImage)
 }
 
 // Returns the name of the item
-string Item::getName() 
+std::string Item::getName()
 {
     return name;
 }
 
 // Returns the description of the item
-string Item::getDescription() 
+std::string Item::getDescription()
 {
     return description;
 }
 
-string Item::getImage()
+std::string Item::getImage()
 {
 	return itemImage;
 }
 
 void Item::printImage()
 {
-	ifstream file(itemImage);
+	std::ifstream file(itemImage);
 	if (!file) 
 	{
-		cout << "Error opening file: " << itemImage << endl;
+		std::cout << "Error opening file: " << itemImage << std::endl;
 	}
-	string line;
+	std::string line;
 	while (getline(file, line))
 	{
-		cout << line << endl;
+		std::cout << line << std::endl;
 	}
 }

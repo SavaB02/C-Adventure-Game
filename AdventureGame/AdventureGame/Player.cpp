@@ -1,12 +1,12 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(string i_name)
+Player::Player(std::string i_name)
 {
 	name = i_name;
 }
 
-bool Player::hasItem(string itemName)
+bool Player::hasItem(std::string itemName)
 {
 	for (auto& item : inventory)
 	{
@@ -24,7 +24,7 @@ void Player::addItem(Item item)
 	inventory.push_back(item); //add item to inventory
 }
 
-void Player::removeItem(string itemName)
+void Player::removeItem(std::string itemName)
 {
 	for (auto it = inventory.begin(); it != inventory.end(); ++it) {
 		if (it->getName() == itemName) 
@@ -33,10 +33,10 @@ void Player::removeItem(string itemName)
 			return;  //exit after removing the item
 		}
 	}
-	cout << "Item not found in inventory!" << endl;  //if the item was not found
+	std::cout << "Item not found in inventory!" << std::endl;  //if the item was not found
 }
 
-vector<Item>& Player::getInventory()
+std::vector<Item>& Player::getInventory()
 {
 	return inventory;
 }

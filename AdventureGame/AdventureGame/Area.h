@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "Option.h"
 
-using namespace std;
+
 
 /**
 * @class Area
@@ -21,52 +21,52 @@ private:
     /**
     * @brief Name of the area.
     */
-    string name;
+    std::string name;
 
     /**
     * @brief Description of the area.
     */
-    string description;
+    std::string description;
 
     /**
     * @brief Description when exploring the area's inside zone.
     */
-    string explore;
+    std::string explore;
 
     /**
     * @brief Overview of the area from another area's perspective.
     */
-    string overview;
+    std::string overview;
 
     /**
     * @brief Vector of items present inside the area.
     */
-    vector<Item> items;
+    std::vector<Item> items;
 
     /**
     * @brief Vector of pathways connected to this area.
     */
-    vector<Area*> pathways;
+    std::vector<Area*> pathways;
 
     /**
     * @brief Path to a .txt file containing the image of this area on the map.
     */
-    string mapPath;
+    std::string mapPath;
 
     /**
     * @brief Path to a .txt file containing the image of this area's inside zone.
     */
-    string mapInsidePath;
+    std::string mapInsidePath;
 
     /**
     * @brief Vector of obstacles present inside the area.
     */
-    vector<Obstacle> obstacles;
+    std::vector<Obstacle> obstacles;
 
     /**
     * @brief Vector of options present inside the area.
     */
-    vector<Option> options;
+    std::vector<Option> options;
 
 public:
     /**
@@ -81,7 +81,7 @@ public:
     * @param i_mapPath Path to the .txt file representing the area on the map.
     * @param i_mapInsidePath Path to the .txt file representing the inside zone of the area.
     */
-    Area(string i_name, string i_overview, string i_mapPath, string i_mapInsidePath);
+    Area(std::string i_name, std::string i_overview, std::string i_mapPath, std::string i_mapInsidePath);
 
     // Getters and Setters for parameters -----------------------------
 
@@ -89,49 +89,49 @@ public:
     * @brief Sets the name of the area.
     * @param name The new name of the area.
     */
-    void setName(string name);
+    void setName(std::string name);
 
     /**
     * @brief Retrieves the name of the area.
     * @return The name of the area.
     */
-    string getName();
+    std::string getName();
 
     /**
     * @brief Sets the description of the area.
     * @param description The description of the area.
     */
-    void setDescription(string description);
+    void setDescription(std::string description);
 
     /**
     * @brief Retrieves the description of the area.
     * @return The description of the area.
     */
-    string getDescription();
+    std::string getDescription();
 
     /**
     * @brief Sets the explore description for the area (e.g., for going inside).
     * @param explore The explore description for the area.
     */
-    void setExplore(string explore);
+    void setExplore(std::string explore);
 
     /**
     * @brief Retrieves the explore description for the area.
     * @return The explore description of the area.
     */
-    string getExplore();
+    std::string getExplore();
 
     /**
     * @brief Sets the overview of the area from another area’s perspective.
     * @param overview The overview of the area.
     */
-    void setOverview(string overview);
+    void setOverview(std::string overview);
 
     /**
     * @brief Retrieves the overview of the area.
     * @return The overview of the area.
     */
-    string getOverview();
+    std::string getOverview();
 
     // Pathways --------------------------------------------------------
 
@@ -145,7 +145,7 @@ public:
     * @brief Retrieves all the pathways connected to this area.
     * @return A vector of areas connected to this area.
     */
-    vector<Area*> getPathways();
+    std::vector<Area*> getPathways();
 
     // Map Printing ----------------------------------------------------
 
@@ -153,7 +153,7 @@ public:
     * @brief Retrieves the path to the .txt file representing the area on the map.
     * @return The map path of the area.
     */
-    string getMapPath();
+    std::string getMapPath();
 
     /**
     * @brief Prints the .txt file representing the area’s map on screen.
@@ -177,7 +177,7 @@ public:
     * @brief Gets an obstacle's name from area's 'obstacle' vector
     * @param i_name Name of the obstacle.
     */
-    Obstacle& getObstacle(string i_name);
+    Obstacle& getObstacle(std::string i_name);
 
     /**
     * @brief Presents the player with options to interact with an obstacle.
@@ -207,7 +207,7 @@ public:
     * @brief Removes an item from the area’s list of items.
     * @param i_name The name of the item to be removed.
     */
-    void removeItem(string i_name);
+    void removeItem(std::string i_name);
 
     /**
     * @brief Checks if the area contains any items.
@@ -225,7 +225,7 @@ public:
     * @brief Getter for an option
     * @param i_description Description of that option
     */
-    Option getOption(string i_description);
+    Option& getOption(std::string i_description);
 
     /**
     * @brief Getter for an index of an option
@@ -237,7 +237,7 @@ public:
     * @brief Getter for all options inside an area
     * @return All the options inside an area's vector
     */
-    vector<Option> getOptions();
+    std::vector<Option> getOptions();
 
     /**
     * @brief Displays all the options in the area in a list

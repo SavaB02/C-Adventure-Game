@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Item.h"
 
-using namespace std;
+
 
 class Area;
 
@@ -21,21 +21,21 @@ private:
     /**
     * @brief Name of the obstacle.
     */
-    string name;
+    std::string name;
     /**
     * @brief Description of the obstacle.
     */
-    string description;
+    std::string description;
 
     /**
     * @brief Path to .txt file containing the obstacle's ASCII image.
     */
-    string obsImage;
+    std::string obsImage;
 
     /**
     * @brief Name of the item required to solve this obstacle.
     */
-    string requiredItem;
+    std::string requiredItem;
 
     /**
     * @brief Flag indicating whether the obstacle is solved (default: false).
@@ -45,12 +45,12 @@ private:
     /**
     * @brief Name of an item that unlocks after solving this obstacle
     */
-    string unlockItemName;
+    std::string unlockItemName;
 
     /**
     * @brief Description of an item that unlocks after solving this obstacle
     */
-    string unlockItemDescription;
+    std::string unlockItemDescription;
 
     /**
     * @brief Flag indicating if unlocked pathway is opened (true) or closed (false)
@@ -60,7 +60,7 @@ private:
     /**
     * @brief flag to indicate the type of the obstacle. Can be "pathway" or "item"
     */
-    string obstacleType;
+    std::string obstacleType;
 
     /**
     * @brief array that stores 2 areas
@@ -82,7 +82,7 @@ public:
     * @param i_obstacleType Flag to indicate the type of the obstacle. Can be "pathway" or "item"
     * @param i_obstacleItem Item that obstacle gives after solving it
     */
-    Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Item i_obstacleItem);
+    Obstacle(std::string i_name, std::string i_description, std::string i_obsImage, std::string i_requiredItem, std::string i_obstacleType, Item i_obstacleItem);
 
     /**
     * @brief Constructs an Obstacle object.
@@ -94,7 +94,7 @@ public:
     * @param i_toJoin1 First area to join with the second
     * @param i_toJoin2 Second area to join with the first
     */
-    Obstacle(string i_name, string i_description, string i_obsImage, string i_requiredItem, string i_obstacleType, Area* i_toJoin1, Area* i_toJoin2);
+    Obstacle(std::string i_name, std::string i_description, std::string i_obsImage, std::string i_requiredItem, std::string i_obstacleType, Area* i_toJoin1, Area* i_toJoin2);
 
     /**
     * @brief An empty construct of an Obstacle object.
@@ -105,7 +105,7 @@ public:
     * @brief Retrieves the name of the obstacle
     * @return Name of the obstacle
     */
-    string getName();
+    std::string getName();
 
     /**
     * @brief Prints the name of the obstacle.
@@ -123,7 +123,7 @@ public:
     * @brief Retrieves the name of the item required to solve the obstacle.
     * @return The name of the required item.
     */
-    string getRequiredItem();
+    std::string getRequiredItem();
 
     /**
     * @brief Displays the obstacle's ASCII image by printing the .txt file to the screen.
@@ -146,19 +146,19 @@ public:
     * @param i_unlockItemName Name of the item that unlocks after solving this obstacle
     * @param i_unlockItemDescription Description of the item that unlocks after solving this obstacle
     */
-    void setUnlockItem(string i_unlockItemName, string i_unlockItemDescription);
+    void setUnlockItem(std::string i_unlockItemName, std::string i_unlockItemDescription);
 
     /**
     * @brief Get a name of an item's that's being unlocked
     * @return Obstacle's unlockItemName
     */
-    string getUnlockItemName();
+    std::string getUnlockItemName();
 
     /**
     * @brief Get a description of an item that's being unlocked
     * @return Obstacle's unlockItemDescription
     */
-    string getUnlockItemDescription();
+    std::string getUnlockItemDescription();
 
     /**
     * @brief Unlocks a pathway after solving this obstacle
@@ -181,7 +181,7 @@ public:
     * @brief Returns obstacle type
     * @return obstacle type
     */
-    string getType();
+    std::string getType();
 
     /**
     * @brief Gives the item after solving an obstacle

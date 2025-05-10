@@ -16,26 +16,26 @@ private:
     /**
     * @brief Name of the player.
     */
-    string name;
+    std::string name;
 
     /**
     * @brief The player's inventory, stored as a vector of Item objects.
     */
-    vector<Item> inventory;
+    std::vector<Item> inventory;
 
 public:
     /**
     * @brief Constructs a Player object.
     * @param i_name The player's name.
     */
-    Player(string i_name);
+    Player(std::string i_name);
 
     /**
     * @brief Checks if the player has a specific item in their inventory.
     * @param itemName The name of the item to check.
     * @return True if the item is in the inventory, false otherwise.
     */
-    bool hasItem(string itemName);
+    bool hasItem(std::string itemName);
 
     /**
     * @brief Adds an item to the player's inventory.
@@ -47,12 +47,12 @@ public:
     * @brief Removes an item from the player's inventory.
     * @param itemName The name of the item to remove.
     */
-    void removeItem(string itemName);
+    void removeItem(std::string itemName);
 
     /**
     * @brief Retrieves the player's inventory.
     * @return A reference to the vector containing the player's items.
     */
-    vector<Item>& getInventory();
+    std::vector<Item>& getInventory();
 };
 

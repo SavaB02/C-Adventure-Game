@@ -3,7 +3,7 @@
 #include <fstream>      //file input and output
 #include <iostream>
 
-using namespace std;
+
 
 /**
 * @class Item
@@ -18,17 +18,17 @@ private:
     /**
     * @brief Name of the item.
     */
-    string name;
+    std::string name;
 
     /**
     * @brief Description of the item.
     */
-    string description;
+    std::string description;
 
     /**
     * @brief Path to .txt file containing the item's ASCII image.
     */
-    string itemImage;
+    std::string itemImage;
 
 public:
     /**
@@ -42,25 +42,25 @@ public:
     * @param i_description The description of the item.
     * @param i_itemImage Path to the .txt file of the item's ASCII image
     */
-    Item(string i_name, string i_description, string i_itemImage);
+    Item(std::string i_name, std::string i_description, std::string i_itemImage);
 
     /**
     * @brief Retrieves the name of the item.
     * @return The item's name.
     */
-    string getName();
+    std::string getName();
 
     /**
     * @brief Retrieves the description of the item.
     * @return The item's description.
     */
-    string getDescription();
+    std::string getDescription();
 
     /**
     * @brief Retrieves the image path of the item.
     * @return The item's image path.
     */
-    string getImage();
+    std::string getImage();
 
     /**
     * @brief Displays the image's ASCII image by printing the .txt file to the screen.
